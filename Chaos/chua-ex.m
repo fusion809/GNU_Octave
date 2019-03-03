@@ -1,7 +1,7 @@
 clear all
-t=linspace(0,1000,1000001); 
+t=linspace(0,350,100001); 
 lsode_options("relative tolerance", 1e-15);
-y = lsode("lorenz",[ 1.0; 1.0; 1.0]',t);
+y = lsode("chua",[ 0.7; 0.0; 0.0]',t);
 
 figure(1)
 

@@ -1,0 +1,10 @@
+function dy = chua(y,t)
+dy = zeros(3,1);
+alpha = 15.6;
+beta = 28.0;
+c = -0.714;
+d = -1.143;
+f=  c*y(1) + 0.5*(d-c)*(abs(y(1)+1)-abs(y(1)-1));
+dy(1) = alpha*(y(2)-y(1)-f);
+dy(2) = (y(1) - y(2) + y(3));
+dy(3) = -beta*y(2);
