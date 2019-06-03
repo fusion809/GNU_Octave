@@ -76,4 +76,4 @@ plot(t,y)
 figure(2)
 plot(t,f(t))
 
-rms=sqrt((y-f(t))'*(y-f(t)));
+rms=sqrt((y-f(t))'*(y-f(t)))
