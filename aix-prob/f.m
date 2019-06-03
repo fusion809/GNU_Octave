@@ -1,3 +1,4 @@
 function y=f(x)
-  y=log(1+x.^2);
+  b=10;
+  y=exp(trans(b,x)).*airy(0,trans(b,x));
 endfunction
