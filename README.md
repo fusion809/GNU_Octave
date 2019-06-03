@@ -4,6 +4,7 @@ This repository contains my GNU Octave scripts.
 | Script           | Description                                                                  |
 |------------------|------------------------------------------------------------------------------|
 | airy-newton.m    | Determines the first root, on the negative x axis, of the Airy Ai(x) function.|
+| am-calc-aix-prob-interp.m | Determines the coefficients in a Chebyshev series for a function f(x) using inner products. Root mean square errors are calculated too. |
 | first.m          | Solves Schrodinger equation with V = k x on [0,200] (which is meant to approximate infinity) with N = 1000. |
 | jerk.m           | Jerk equation (from [Wikipedia](https://en.wikipedia.org/wiki/Chaos_theory#Jerk_systems)) function script. |
 | jerk-ex.m        | Solves the aforementioned jerk equation and plots it.                        |

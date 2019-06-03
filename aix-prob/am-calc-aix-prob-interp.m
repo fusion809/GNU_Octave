@@ -71,10 +71,8 @@ quad("f59",-1,1,tol);
 quad("f60",-1,1,tol)];
 y=T(:,1:N)*a(1:N);
 
-# Accuracy to 9 decimal places exists for:
-# Ai(x)
-# 1/sqrt(1+x^2)
-# tanh(x)/sqrt(1+x^2)
+# Highly accurate for most functions, such as Ai(x), log(1+x^2), 
+# exp(x)*log(x)*Ai(x)
 figure(1)
 plot(x,y)
 figure(2)
