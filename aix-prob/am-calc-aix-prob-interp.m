@@ -1,5 +1,5 @@
 clear all
-N=50;
+N=30;
 NN=1000;
 n=0:N;
 t=linspace(-1,1,NN+1)';
@@ -54,8 +54,18 @@ quad("f46",-1,1);
 quad("f47",-1,1);
 quad("f48",-1,1);
 quad("f49",-1,1);
-quad("f50",-1,1)];
-y=T(:,1:20)*a(1:20);
+quad("f50",-1,1);
+quad("f51",-1,1);
+quad("f52",-1,1);
+quad("f53",-1,1);
+quad("f54",-1,1);
+quad("f55",-1,1);
+quad("f56",-1,1);
+quad("f57",-1,1);
+quad("f58",-1,1);
+quad("f59",-1,1);
+quad("f60",-1,1)];
+y=T(:,1:N)*a(1:N);
 
 # Accuracy to 9 decimal places exists for:
 # Ai(x)
