@@ -77,5 +77,7 @@ figure(1)
 plot(x,y)
 figure(2)
 plot(x,f(t))
+figure(3)
+semilogy(x,abs(y-f(t)))
 
 rms=sqrt((y-f(t))'*(y-f(t)))
