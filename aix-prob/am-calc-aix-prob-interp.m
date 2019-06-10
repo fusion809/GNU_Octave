@@ -70,7 +70,13 @@ quad("f58",-1,1,tol);
 quad("f59",-1,1,tol);
 quad("f60",-1,1,tol)];
 y=T(:,1:N)*a(1:N);
-
+h=b/NN;
+#area=h/3*(y(1)+4*sum(y(2:2:NN))+2*sum(y(3:2:NN))+y(NN+1));
+#Tint=cos(acos(t)*(n+ones(1,N+1)))*diag(n./(n.^2-ones(1,N+1)))-diag(x)*T*diag(1./(n-ones(1,N+1)));
+#Tint(:,1)=t;
+#Tint(:,2)=(t.^2)/2;
+#yint=Tint(:,1:N)*a(1:N);
+# These lines return results diff to quad("f",-1,1)
 # Highly accurate for most functions, such as Ai(x), log(1+x^2), 
 # exp(x)*log(x)*Ai(x)
 figure(1)
