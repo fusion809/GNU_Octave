@@ -4,6 +4,7 @@ clear all
 format long g
 # Number of collocation points
 N         = 1000;
+NN        = 100000;
 # Integration interval
 xx0       = 0;
 xxf       = 50;
@@ -12,7 +13,11 @@ n         = 0:N;
 # Extrema grid
 x         = -cos(pi*n'/N);
 # Transformation to [xx0, xxf]
-xx        = (xxf-xx0)/2*(x+1);
+xtrans    = (xxf-xx0)/2*(x+1);
+# linearly spaced grid
+xlin      = linspace(-1,1,NN+1)';
+Tlin      = cos(acos(xlin)*n);
+xtranslin = (xlin+1)*(xxf-xx0)/2;
 # Chebyshev polys of the first kind
 T         = cos(acos(x)*n);
 # Now for arrays that do not include the endpoints
@@ -25,7 +30,7 @@ dT        = [-(n.^2).*(-1).^(n); dTsub ; (n).^2];
 # LHS without a (coefficient vector)
 H         = 2/(xxf-xx0)*dT;
 # RHS, essentially what we're trying to integrate
-F         = cos(xx).*exp(-xx.^2);
+F         = (cos(xtrans)).^2.*exp(-xtrans.^2);
 # Initial condition; with definite integrals y(xx0) = 0
 H(1,:)    = T(1,:);
 F(1)      = 0;
@@ -35,13 +40,16 @@ a         = H\F;
 y         = T*a;
 # definite integral
 y         = y-y(1);
+# y lin
+ylin      = Tlin*a;
 # exact indefinite solution per Wolfram Alpha
-yexact    = sqrt(pi)*(erf(xx-1/2*i)+erf(xx+1/2*i))/(4*exp(1/4));
+yexact    = sqrt(pi)*(2*e*erf(xtranslin)+i*(erfi(1-i*xtranslin)-erfi(1+i*xtranslin)))/(8*exp(1));
+yexact    = real(yexact);
 # exact definite solution
 yexact    = yexact-yexact(1);
 # error to Chebyshev approximation
-err       = abs(yexact-y);
-errrms    = sqrt(err'*err)
+err       = abs(yexact-ylin);
+errrms    = sqrt(err'*err/(N+1))
 # y approximated by quadratic integration function
 yquad     = quad("g", 0, inf);
 # error in approximation
