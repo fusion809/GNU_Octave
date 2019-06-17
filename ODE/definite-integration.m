@@ -30,7 +30,7 @@ dT        = [-(n.^2).*(-1).^(n); dTsub ; (n).^2];
 # LHS without a (coefficient vector)
 H         = 2/(xxf-xx0)*dT;
 # RHS, essentially what we're trying to integrate
-F         = (cos(xtrans)).^2.*exp(-xtrans.^2);
+F         = gsimp(xtrans);
 # Initial condition; with definite integrals y(xx0) = 0
 H(1,:)    = T(1,:);
 F(1)      = 0;
@@ -40,10 +40,10 @@ a         = H\F;
 y         = T*a;
 # definite integral
 y         = y-y(1);
-# y lin
+# y on the linear grid
 ylin      = Tlin*a;
 # exact indefinite solution per Wolfram Alpha
-yexact    = sqrt(pi)*(2*e*erf(xtranslin)+i*(erfi(1-i*xtranslin)-erfi(1+i*xtranslin)))/(8*exp(1));
+yexact    = -1/10*exp(-xtranslin).*(-2*sin(2*xtranslin)+cos(2*xtranslin)+5);
 yexact    = real(yexact);
 # exact definite solution
 yexact    = yexact-yexact(1);
