@@ -36,21 +36,32 @@ H(1,:)    = T(1,:);
 F(1)      = 0;
 # coefficient vector
 a         = H\F;
+dya       = T\F;
 # solution to ODE vector
 y         = T*a;
 # definite integral
 y         = y-y(1);
 # y on the linear grid
 ylin      = Tlin*a;
+dylin     = Tlin*dya;
 # exact indefinite solution per Wolfram Alpha
-yexact    = -1/10*exp(-xtranslin).*(-2*sin(2*xtranslin)+cos(2*xtranslin)+5);
-yexact    = real(yexact);
+#yexact    = -1/10*exp(-xtranslin).*(-2*sin(2*xtranslin)+cos(2*xtranslin)+5);
+#yexact    = real(yexact);
 # exact definite solution
-yexact    = yexact-yexact(1);
+#yexact    = yexact-yexact(1);
 # error to Chebyshev approximation
-err       = abs(yexact-ylin);
-errrms    = sqrt(err'*err/(NN+1))
+#err       = abs(yexact-ylin);
+#errrms    = sqrt(err'*err/(NN+1))
 # y approximated by quadratic integration function
-yquad     = quad("g", 0, inf);
+#yquad     = quad("g", 0, inf);
+# y solved from ODE
+lsode_options("absolute tolerance", 1e-18);
+yode      = lsode("g", 0, xtranslin);
 # error in approximation
-errquad   = abs(yexact(end)-yquad)
+#errquad   = abs(yexact(end)-yquad)
+diffodech = abs(yode-ylin);
+errodech  = sqrt(diffodech'*diffodech/(NN+1));
+figure(1)
+semilogy(xtranslin,diffodech)
+figure(2)
+plot(xtranslin,ylin,'r',xtranslin(2:end),dylin(2:end),'g')

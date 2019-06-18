@@ -1,3 +1,3 @@
-function dy=g(x)
+function dy=g(y,x)
   dy(1)=gsimp(x);
 endfunction
