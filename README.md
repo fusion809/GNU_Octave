@@ -6,7 +6,6 @@ This repository contains my GNU Octave scripts.
 | airy-newton.m    | Determines the first root, on the negative x axis, of the Airy Ai(x) function.|
 | am-calc-aix-prob-interp.m | Determines the coefficients in a Chebyshev series for a function f(x) using inner products. Root mean square errors are calculated too. |
 | bash.m           | Starts a bash shell with the command 'bash' |
-| definite-integration.m | Definite integration using lsode compared to using a Chebyshev spectral method. Usually lsode outperforms the spectral method. |
 | first.m          | Solves Schrodinger equation with V = k x on [0,200] (which is meant to approximate infinity) with N = 1000. |
 | jerk.m           | Jerk equation (from [Wikipedia](https://en.wikipedia.org/wiki/Chaos_theory#Jerk_systems)) function script. |
 | jerk-ex.m        | Solves the aforementioned jerk equation and plots it.                        |
@@ -14,6 +13,10 @@ This repository contains my GNU Octave scripts.
 | lorenz.m         | Lorenz equation function script.                                             |
 | lorenz-plot.m    | Plots lorenz-ex.m solution.                                                  |
 | ode-xy-cos-y2.m  | Solves ODE specified by f.m                                                  |
+| ODE/definite-integration.m | Definite integration using lsode compared to using a Chebyshev spectral method. Usually lsode outperforms the spectral method. |
+| ODE/f.m          | 2nd order ODE lsode-usable function.                                         |
+| ODE/g.m          | Function to be definitely integrated in ODE/definite-integration.m.          |
+| ODE/gsimp.m      | Version of g.m that is flexible enough to be used in F Chebyshev RHS vector. |
 | push.m           | A failed attempt at making a function that commits git changes with commit message input, x. |
 | prayer.m         | Redundant script I used to determine how close I was to 99 prayer on RuneScape  |
 | randex.m         | Contains randex function, which is the diff function for a random ODE.       |
