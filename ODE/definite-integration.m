@@ -49,7 +49,7 @@ yexact    = real(yexact);
 yexact    = yexact-yexact(1);
 # error to Chebyshev approximation
 err       = abs(yexact-ylin);
-errrms    = sqrt(err'*err/(N+1))
+errrms    = sqrt(err'*err/(NN+1))
 # y approximated by quadratic integration function
 yquad     = quad("g", 0, inf);
 # error in approximation
