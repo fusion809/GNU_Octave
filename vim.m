@@ -1,3 +1,3 @@
-function vim {
+function vim {}
   system "vim"
 endfunction

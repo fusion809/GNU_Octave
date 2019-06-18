@@ -1,3 +1,3 @@
 function zsh()
-  system zsh
+  system "zsh"
 endfunction
