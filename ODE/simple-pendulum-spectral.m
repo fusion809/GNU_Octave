@@ -1,8 +1,9 @@
 clear all
-N         = 2e3;
-NN        = 3e5;
-Iter      = 100;
-b         = 3;
+N         = 2.5e3;
+NN        = 3.5e5;
+Iter      = 5;
+b         = 2.4;
+period    = 1.1845;
 g         = 9.8;
 l         = 1;
 theta0    = 0;
@@ -21,7 +22,7 @@ dTsub     = Usub*diag(n);
 dT        = [-(n.^2).*(-1).^(n); dTsub ; (n).^2];
 D1        = 2/b*dT/T;
 D2        = D1^2;
-thetainit = -pi/2+pi/2*cos(pi/1.184*t);
+thetainit = -pi/2+pi/2*cos(pi/period*t);
 theta     = zeros(N+1,Iter); 
 theta(:,1)= thetainit;
 a(:,1)    = T\thetainit;
@@ -34,6 +35,8 @@ for i=2:Iter
   LHS(1,2:N+1)=0;
   LHS(N+1,:)=D1(1,:);
   rcon(i-1)=rcond(LHS);
+  # Initial conditions
+  # designed to reverse any creeking in init. conds.
   RHS(1)=theta0-theta(1,i-1);
   RHS(N+1)=dtheta0-dtheta(1);
   delta(:,i-1)=LHS\RHS;
@@ -56,3 +59,7 @@ figure(1)
 plot(t,thetainit);
 figure(2)
 plot(tt,thetalin(:,end))
+figure(3)
+semilogy(tt,diff)
+figure(4)
+semilogy(deltarms)
