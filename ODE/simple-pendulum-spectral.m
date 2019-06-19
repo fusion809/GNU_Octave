@@ -1,6 +1,6 @@
 clear all
-N         = 1e3;
-NN        = 1e5;
+N         = 2e3;
+NN        = 3e5;
 Iter      = 100;
 b         = 3;
 g         = 9.8;
@@ -33,12 +33,13 @@ for i=2:Iter
   LHS(1,1)=1;
   LHS(1,2:N+1)=0;
   LHS(N+1,:)=D1(1,:);
+  rcon(i-1)=rcond(LHS);
   RHS(1)=theta0-theta(1,i-1);
   RHS(N+1)=dtheta0-dtheta(1);
   delta(:,i-1)=LHS\RHS;
   theta(:,i)=theta(:,i-1)+delta(:,i-1);
   a(:,i)=T\theta(:,i);
-  deltarms(i-1)=sqrt(delta(:,i-1)'*delta(:,i-1)/(N+1));
+  deltarms(i-1,1)=sqrt(delta(:,i-1)'*delta(:,i-1)/(N+1));
   clear RHS LHS dtheta;
 endfor
 
@@ -47,6 +48,10 @@ xx=linspace(-1,1,NN+1)';
 tt=b/2*(xx+1);
 TT=cos(acos(xx)*n);
 thetalin=TT*a;
+thetaodelin=lsode("simpen",[theta0 dtheta0],tt);
+diff=abs(thetalin(:,end)-thetaodelin(:,1));
+# the following equals 6.7666681e-4 for N=2e3; NN=3e5; b=3; Iter=100
+diffrms=sqrt(diff'*diff/(NN+1));
 figure(1)
 plot(t,thetainit);
 figure(2)
