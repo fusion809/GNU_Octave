@@ -1,8 +1,9 @@
+# Converges on a completely inaccurate solution
 clear all
-N         = 1e3;
-NN        = 1e4;
-Iter      = 10;
-b         = 10;
+N         = 3e3;
+NN        = N;
+Iter      = 100;
+b         = 5;
 mu        = 4;
 x0        = 0;
 dx0       = 1;
@@ -30,22 +31,22 @@ x(:,1)    = xinit;
 a(:,1)    = T\xinit;
 
 for i=2:Iter
-  dx=D1*x(:,i-1);
-  RHS=-D2*x(:,i-1)+mu*(1-x(:,i-1).^2).*dx-x(:,i-1);
-  LHS=D2-2*mu*diag(x(:,i-1).*dx)-mu*diag(x(:,i-1).^2)*D1+diag(ones(N+1,1));
-  LHS(1,1)=1;
-  LHS(1,2:N+1)=0;
-  LHS(N+1,:)=D1(1,:);
-  rcon(i-1)=rcond(LHS);
+  clear RHS LHS;
+  dx(:,i-1)=D1*x(:,i-1);
+  RHS=-D2*x(:,i-1)+mu*(1-x(:,i-1).^2).*dx(:,i-1)-x(:,i-1);
+  LHS=D2-mu*diag(1-x(:,i-1).^2)*D1+diag(2*mu*x(:,i-1).*dx(:,i-1)+1);
+  LHS(N+2,1)=1;
+  LHS(N+2:N+1)=0;
+  LHS(N+3,:)=D1(1,:);
+ # rcon(i-1)=rcond(LHS);
   # Initial conditions
   # designed to reverse any creeking in init. conds.
-  RHS(1)=x0-x(1,i-1);
-  RHS(N+1)=dx0-dx(1);
+  RHS(N+2)=x0-x(1,i-1);
+  RHS(N+3)=dx0-dx(1,i-1);
   delta(:,i-1)=LHS\RHS;
   x(:,i)=x(:,i-1)+delta(:,i-1);
   a(:,i)=T\x(:,i);
   deltarms(i-1,1)=sqrt(delta(:,i-1)'*delta(:,i-1)/(N+1));
-  clear RHS LHS dx;
 endfor
 xlin      = TT*a;
 aend=a(:,end);
@@ -53,11 +54,11 @@ xlin=TT*a;
 diff=abs(xlin(:,end)-xlin(:,1));
 # the following equals 6.7666681e-4 for N=2e3; NN=3e5; b=3; Iter=100
 diffrms=sqrt(diff'*diff/(NN+1));
-figure(1)
-plot(t,xinit);
-figure(2)
-plot(tt,xlin(:,end))
-figure(3)
-semilogy(tt,diff)
+#figure(1)
+#plot(t,xinit);
+#figure(2)
+#plot(tt,xlin(:,end))
+#figure(3)
+#semilogy(tt,diff)
 figure(4)
 semilogy(deltarms)
