@@ -1,13 +1,11 @@
 clear all
-N         = 2e3;
-NN        = 3e5;
-Iter      = 5;
+N         = 1e3;
+NN        = 1e4;
+Iter      = 10;
 b         = 10;
-period    = 1.1845;
-g         = 9.8;
-l         = 1;
-theta0    = 0;
-dtheta0   = 0;
+mu        = 4;
+x0        = 0;
+dx0       = 1;
 n         = 0:N;
 parat     = pi+n'*pi/N;
 Chx       = cos(parat);
@@ -22,43 +20,43 @@ dTsub     = Usub*diag(n);
 dT        = [-(n.^2).*(-1).^(n); dTsub ; (n).^2];
 D1        = 2/b*dT/T;
 D2        = D1^2;
-thetainit = -pi/2+pi/2*cos(pi/period*t);
-theta     = zeros(N+1,Iter); 
-theta(:,1)= thetainit;
-a(:,1)    = T\thetainit;
+Chxx      = linspace(-1,1,NN+1)';
+tt        = b/2*(Chxx+1);
+TT        = cos(acos(Chxx)*n);
+xodelin   = lsode("vanderpol",[x0 dx0],t);
+xinit     = xodelin(:,1);
+x         = zeros(N+1,Iter); 
+x(:,1)    = xinit;
+a(:,1)    = T\xinit;
 
 for i=2:Iter
-  dtheta=D1*theta(:,i-1);
-  RHS=-D2*theta(:,i-1)-g/l*cos(theta(:,i-1));
-  LHS=D2-g/l*diag(sin(theta(:,i-1)));
+  dx=D1*x(:,i-1);
+  RHS=-D2*x(:,i-1)+mu*(1-x(:,i-1).^2).*dx-x(:,i-1);
+  LHS=D2-2*mu*diag(x(:,i-1).*dx)-mu*diag(x(:,i-1).^2)*D1+diag(ones(N+1,1));
   LHS(1,1)=1;
   LHS(1,2:N+1)=0;
   LHS(N+1,:)=D1(1,:);
   rcon(i-1)=rcond(LHS);
   # Initial conditions
   # designed to reverse any creeking in init. conds.
-  RHS(1)=theta0-theta(1,i-1);
-  RHS(N+1)=dtheta0-dtheta(1);
+  RHS(1)=x0-x(1,i-1);
+  RHS(N+1)=dx0-dx(1);
   delta(:,i-1)=LHS\RHS;
-  theta(:,i)=theta(:,i-1)+delta(:,i-1);
-  a(:,i)=T\theta(:,i);
+  x(:,i)=x(:,i-1)+delta(:,i-1);
+  a(:,i)=T\x(:,i);
   deltarms(i-1,1)=sqrt(delta(:,i-1)'*delta(:,i-1)/(N+1));
-  clear RHS LHS dtheta;
+  clear RHS LHS dx;
 endfor
-
+xlin      = TT*a;
 aend=a(:,end);
-Chxx=linspace(-1,1,NN+1)';
-tt=b/2*(ChxChx+1);
-TT=cos(acos(ChxChx)*n);
-thetalin=TT*a;
-thetaodelin=lsode("simpen",[theta0 dtheta0],tt);
-diff=abs(thetalin(:,end)-thetaodelin(:,1));
+xlin=TT*a;
+diff=abs(xlin(:,end)-xlin(:,1));
 # the following equals 6.7666681e-4 for N=2e3; NN=3e5; b=3; Iter=100
 diffrms=sqrt(diff'*diff/(NN+1));
 figure(1)
-plot(t,thetainit);
+plot(t,xinit);
 figure(2)
-plot(tt,thetalin(:,end))
+plot(tt,xlin(:,end))
 figure(3)
 semilogy(tt,diff)
 figure(4)
