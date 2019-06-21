@@ -1,3 +1,5 @@
+# Standard values are for transformation x=(y-L)/(y+L), y in 0, inf
+# *lin are for x=2/L*y-1 (linear transformation)
 clear all
 format long e;
 N=5000;
@@ -42,10 +44,10 @@ aizerochklin = abs(airy(0,-Lamlin));
 L
 errrms    = sqrt(aizerochk(1:Nfrag)'*aizerochk(1:Nfrag)/(Nfrag+1))
 errrmslin    = sqrt(aizerochklin(1:Nfrag)'*aizerochklin(1:Nfrag)/(Nfrag+1))
-
-#figure(1)
-#plot(ysub(1:3*N/5), Y(1:3*N/5,1));
-#figure(2)
-#plot(ysub(1:3*N/5), Y(1:3*N/5,2));
-#figure(3)
-#plot(ysub(1:3*N/5), Y(1:3*N/5,Nfrag));
+ain=quad("airynorm",0,100);
+figure(1)
+plot(ysub(1:3*N/5), Y(1:3*N/5,1));
+figure(2)
+plot(ysub(1:3*N/5), Y(1:3*N/5,2));
+figure(3)
+plot(ysub(1:3*N/5), Y(1:3*N/5,Nfrag));

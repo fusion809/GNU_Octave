@@ -1,7 +1,7 @@
 clear all
 N         = 3e3;
 NN        = 1e5;
-Iter      = 9;
+Iter      = 15;
 b         = 5;
 delta     = 0.02;
 gamma     = 8;
@@ -34,14 +34,28 @@ for i=2:Iter
   dx=D1*x(:,i-1);
   RHS=-D2*x(:,i-1)-delta*dx-beta*x(:,i-1).^3+gamma*cos(omega*t);
   LHS=D2+delta*D1+3*beta*diag(x(:,i-1).^2);
-  LHS(1,1)=1;
-  LHS(1,2:N+1)=0;
-  LHS(N+1,:)=D1(1,:);
-  rcon(i-1)=rcond(LHS);
-  # Initial conditions
-  # designed to reverse any creeking in init. conds.
-  RHS(1)=x0-x(1,i-1);
-  RHS(N+1)=dx0-dx(1);
+# The different recipe for the last iter. relates to the fact the least squares solve leaves the init conds.
+# not strictly adhered to
+# Regardless of whether this if conditional is used, or whether least squares is used the result is still
+# wrong (as applying the equation to the result gives erroneous values at the endpoints, or the init conds are
+# not fully met.
+  if ( i==Iter )
+    LHS(1,1)=1;
+    LHS(1,2:N+1)=0;
+    LHS(N+1,:)=D1(1,:);
+    RHS(1)=x0-x(1,i-1);
+    RHS(N+1)=dx0-dx(1);
+  else
+    LHS(N+2,1)=1;
+    LHS(N+2,2:N+1)=0;
+    LHS(N+3,:)=D1(1,:);
+    #  rcon(i-1)=rcond(LHS);
+    # Initial conditions
+    # designed to reverse any creeking in init. conds.
+    RHS(N+2)=x0-x(1,i-1);
+    RHS(N+3)=dx0-dx(1);
+  endif
+  
   Delta(:,i-1)=LHS\RHS;
   x(:,i)=x(:,i-1)+Delta(:,i-1);
   a(:,i)=T\x(:,i);
@@ -69,3 +83,6 @@ title("xlin(:,end)-xlin(:,1) vs tt")
 figure(4)
 semilogy(Deltarms)
 title("Logarithmic graph of root mean square of Delta across iterations")
+figure(5)
+plot(tt,xlin(:,1),'r',tt,xlin(:,end),'g')
+title("xlin(:,1) (red) and xlin(:,end) (green) vs tt")
