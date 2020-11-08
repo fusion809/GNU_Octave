@@ -6,3 +6,4 @@ octave-workspace
 *.jpg
 *.jpeg
 *.ofig
+.ipynb_checkpoints
