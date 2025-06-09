@@ -47,18 +47,28 @@ figure(1)
 plot(t,thetainit);
 title("Simple pendulum: \\theta^{(0)} vs t", "fontsize", 25);
 xlabel("t", "fontsize", 20);
-ylabel("\\theta^{(0)}", "fontsize", 20, "rotation", 0);
+h=ylabel("\\theta^{(0)}", "fontsize", 20, "rotation", 0);
+pos = get(h, 'position');            % Get current [x, y, z] position
+new_pos = pos;                       
+new_pos(1) = new_pos(1) - 1.5/10;      % Shift left by 1 cm (0.01 m = 1/10 "normalized units")
+set(h, 'position', new_pos);         % Apply new position
 set(gca, 'fontsize', 16)
 xlim([0 period]);
 ylim([-pi 0]);
+print -dpng "Figure 1 Simple pendulum theta^(0) vs t.png"
 figure(2)
 plot(t,theta(:,end))
 title("Simple pendulum: \\theta^{(f)} vs t", "fontsize", 25)
 xlabel("t", "fontsize", 20);
-ylabel("\\theta^{(f)}", "fontsize", 20, "rotation", 0);
-xlim([0 period]);
+h=ylabel("\\theta^{(f)}", "fontsize", 20, "rotation", 0);
+pos = get(h, 'position');            % Get current [x, y, z] position
+new_pos = pos;                       
+new_pos(1) = new_pos(1) - 1.5/10;      % Shift left by 1 cm (0.01 m = 1/10 "normalized units")
+set(h, 'position', new_pos);         % Apply new position
+% xlim([0 period]);
 ylim([-pi 0]);
 set(gca, 'fontsize', 16)
+print -dpng "Figure 2 Simple pendulum theta^(f) vs t.png"
 figure(3)
 plot(t, D1*theta(:,end))
 xlim([0 period])
@@ -71,26 +81,33 @@ new_pos = pos;
 new_pos(1) = new_pos(1) - 1.5/10;      % Shift left by 1.5 cm (0.01 m = 1/10 "normalized units")
 set(h, 'position', new_pos);         % Apply new position
 set(gca, 'fontsize', 16)
+print -dpng "Figure 3 Simple pendulum dtheta^(f) vs t.png"
 figure(4)
 plot(t, [theta(:,1) theta(:,end)])
 xlim([0 period])
 ylim([-pi 0])
 title("Simple pendulum: \\theta^{(0/f)} vs t", "fontsize", 25)
 xlabel("t", "fontsize", 20);
-ylabel("\\theta^{(0/f)}", "fontsize", 20, "rotation", 0);
+h=ylabel("\\theta^{(0/f)}", "fontsize", 20, "rotation", 0);
+pos = get(h, 'position');            % Get current [x, y, z] position
+new_pos = pos;                       
+new_pos(1) = new_pos(1) - 1.2/10;      % Shift left by 1 cm (0.01 m = 1/10 "normalized units")
+set(h, 'position', new_pos);         % Apply new position
 set(gca, 'fontsize', 16)
 legend('\theta^{(0)}', '\theta^{(f)}')
+print -dpng "Figure 4 Simple pendulum theta^(0_f) vs t.png"
 figure(5)
 residual = D2*[theta(:,1) theta(:,end)]+ g/l*cos([theta(:,1) theta(:,end)]);
 semilogy(t, abs(residual))
 xlim([0 period])
-ylim([min(min(abs(log10(abs(residual))))) max(max(log10(abs(residual))))])
+ylim([min(min((abs(residual)))) max(max(abs(residual)))])
 title("Simple pendulum: residual vs t", "fontsize", 25)
 xlabel("t", "fontsize", 20);
 h=ylabel("Residual", "fontsize", 20, "rotation", 0);
 pos = get(h, 'position');            % Get current [x, y, z] position
 new_pos = pos;                       
-new_pos(1) = new_pos(1) - 3/10;      % Shift left by 1.5 cm (0.01 m = 1/10 "normalized units")
+new_pos(1) = new_pos(1) - 1/10;      % Shift left by 1 cm (0.01 m = 1/10 "normalized units")
 set(h, 'position', new_pos);         % Apply new position
 set(gca, 'fontsize', 16)
 legend('\theta^{(0)}', '\theta^{(f)}')
+print -dpng "Figure 5 Simple pendulum semilogy of residual vs t.png"
