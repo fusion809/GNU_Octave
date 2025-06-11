@@ -7,3 +7,4 @@ octave-workspace
 *.jpeg
 *.ofig
 .ipynb_checkpoints
+*.gif

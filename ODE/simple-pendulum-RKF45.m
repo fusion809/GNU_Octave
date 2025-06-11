@@ -8,7 +8,7 @@ t0        = 0;
 tf        = period;
 theta0    = 0;
 dtheta0   = 0;
-dt        = (tf-t0)/N;
+dt        = [(tf-t0)/N];
 t         = [t0];
 epsil     = 1e-16;
 theta     = [theta0];
@@ -16,12 +16,12 @@ dtheta    = [dtheta0];
 dtheta(1) = dtheta0;
 i         = 1;
 while t(i)<tf;
-    K1 = dt*simpen([theta(i); dtheta(i)], t(i));
-    K2 = dt*simpen([theta(i); dtheta(i)] + 1/4*K1, t(i)+1/4*dt);
-    K3 = dt*simpen([theta(i); dtheta(i)] + 3/32*K1+9/32*K2, t(i)+3/8*dt);
-    K4 = dt*simpen([theta(i); dtheta(i)] + 1932/2197*K1 - 7200/2197*K2 + 7296/2197*K3, t(i) + 12/13*dt);
-    K5 = dt*simpen([theta(i); dtheta(i)] + 439/216*K1 - 8*K2 + 3680/513*K3 - 845/4104*K4, t(i)+dt);
-    K6 = dt*simpen([theta(i); dtheta(i)] - 8/27*K1 + 2*K2 - 3544/2565*K3 + 1859/4104*K4 - 11/40*K5, t(i)+dt);
+    K1 = dt(i)*simpen([theta(i); dtheta(i)], t(i));
+    K2 = dt(i)*simpen([theta(i); dtheta(i)] + 1/4*K1, t(i)+1/4*dt(i));
+    K3 = dt(i)*simpen([theta(i); dtheta(i)] + 3/32*K1+9/32*K2, t(i)+3/8*dt(i));
+    K4 = dt(i)*simpen([theta(i); dtheta(i)] + 1932/2197*K1 - 7200/2197*K2 + 7296/2197*K3, t(i) + 12/13*dt(i));
+    K5 = dt(i)*simpen([theta(i); dtheta(i)] + 439/216*K1 - 8*K2 + 3680/513*K3 - 845/4104*K4, t(i)+dt(i));
+    K6 = dt(i)*simpen([theta(i); dtheta(i)] - 8/27*K1 + 2*K2 - 3544/2565*K3 + 1859/4104*K4 - 11/40*K5, t(i)+dt(i));
 
     theta1  = theta(i) + 25/216 * K1(1) + 1408/2565*K3(1) + 2197/4104*K4(1) - 1/5*K5(1);
     dtheta1 = dtheta(i) + 25/216 * K1(2) + 1408/2565*K3(2) + 2197/4104*K4(2) - 1/5*K5(2);
@@ -31,12 +31,12 @@ while t(i)<tf;
     dtheta  = [dtheta; dtheta1];
     TE = max(abs(-1/360 * K1 + 128/4275 * K3 + 2197/75240 * K4 - 1/50 * K5 - 2/55 * K6));
     s = 0.9*(epsil/TE)^(1/5);
-    if (s*dt+t(i) < tf)
-        dt *= s;
+    if (s*dt(i)+t(i) < tf)
+        dt = [dt; s*dt(i)];
     else
-        dt = tf - t(i);
+        dt = [dt; tf - t(i)];
     end
-    t = [t; t(i)+dt];
+    t = [t; t(i)+dt(i)];
     i = i + 1;
 end
 printf("Number of t values used in the analysis = %d\n", length(t))
@@ -103,3 +103,37 @@ set(gca, 'fontsize', 16)
 xlim([0 period]);
 ylim([min(residual) max(residual)]);
 print -dpng "Figure 3 Simple pendulum residual vs t.png"
+
+% Animation
+x = l * cos(theta);
+y = l * sin(theta);
+
+% Set up figure
+figure(4); clf;
+axis equal off;
+axis([-2.2 2.2 -2.2 2.2]);
+hold on;
+
+% Output GIF filename
+gifname = "Figure 4 Simple pendulum.gif";
+
+for i = 1:length(t)
+  % Clear and plot
+  cla;
+  plot([0 x(i)], [0 y(i)], 'b-', 'LineWidth', 2);      % Rod 1
+  plot(x(i), y(i), 'bo', 'MarkerSize', 8, 'MarkerFaceColor', 'b');
+  title(sprintf("t = %.2f s", t(i)));
+
+  drawnow;
+  frame = getframe(gcf);
+  img = frame2im(frame);
+  [A, map] = rgb2ind(img);
+
+  if i == 1
+    imwrite(A, map, gifname, "gif", "LoopCount", Inf, "DelayTime", dt(i));
+  else
+    imwrite(A, map, gifname, "gif", "WriteMode", "append", "DelayTime", dt(i));
+  end
+end
+
+disp("GIF saved as 'Figure 4 Simple pendulum.gif'");

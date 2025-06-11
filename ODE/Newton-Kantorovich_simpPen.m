@@ -1,3 +1,4 @@
+% This script gives an incorrect result for theta
 N = 1000;
 n = 0:N;
 r = 1;
