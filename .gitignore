@@ -8,3 +8,7 @@ octave-workspace
 *.ofig
 .ipynb_checkpoints
 *.gif
+*.gz
+*.out
+*.log
+*.aux

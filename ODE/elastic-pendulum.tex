@@ -1,0 +1,121 @@
+\documentclass[12pt,a4paper,portrait]{article}
+%\setcounter{secnumdepth}{0}
+\usepackage{gensymb}
+\usepackage{pdflscape}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{sansmath}
+\usepackage{pst-eucl}
+\usepackage{multicol}
+\usepackage{csquotes}
+% Coding
+\usepackage{listings}
+\setlength{\parindent}{0pt}
+\usepackage[obeyspaces]{url}
+% Better inline directory listings
+\usepackage{xcolor}
+\definecolor{light-gray}{gray}{0.95}
+\newcommand{\code}[1]{\colorbox{light-gray}{\texttt{#1}}}
+\usepackage{adjustbox}
+\usepackage[UKenglish]{isodate}
+\usepackage[UKenglish]{babel}
+\usepackage{float}
+\usepackage[T1]{fontenc}
+\usepackage{setspace}
+\usepackage{sectsty}
+\usepackage{longtable}
+\newenvironment{tightcenter}{%
+	\setlength\topsep{0pt}
+	\setlength\parskip{0pt}
+	\begin{center}
+	}{%
+	\end{center}
+}
+\captionsetup{width=\textwidth}
+\usepackage{mbenotes} % to print table notes!
+\usepackage{alphalph} % For extended counters!
+% usage: \tabnotemark[3]\cmsp\tabnotemark[4]
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=black,bookmarksopen=true]{hyperref}
+\sectionfont{%			            % Change font of \section command
+	\usefont{OT1}{phv}{b}{n}%		% bch-b-n: CharterBT-Bold font
+	\sectionrule{0pt}{0pt}{-5pt}{3pt}}
+\subsectionfont{
+	\usefont{OT1}{phv}{b}{n}}
+\newcommand{\MyName}[1]{ % Name
+	\usefont{OT1}{phv}{b}{n} \begin{center}of {\LARGE  #1}\end{center}
+	\par \normalsize \normalfont}
+\makeatletter
+\newcommand\FirstWord[1]{\@firstword#1 \@nil}%
+\newcommand\@firstword{}%
+\newcommand\@removecomma{}%
+\def\@firstword#1 #2\@nil{\@removecomma#1,\@nil}%
+\def\@removecomma#1,#2\@nil{#1}
+\makeatother
+
+\newcommand{\MyTitle}[1]{ % Name
+	\Huge \usefont{OT1}{phv}{b}{n} \begin{center}#1\end{center}
+	\par \normalsize \normalfont}
+\newcommand{\NewPart}[1]{\section*{\uppercase{#1}}}
+\newcommand{\NewSubPart}[1]{\subsection*{\hspace{0.2cm}#1}}
+\renewcommand{\baselinestretch}{1.05}
+\usepackage[margin=0.2cm]{geometry}
+\date{}
+\title{Elastic pendulum}
+\author{Brenton Horne}
+
+\begin{document}
+\maketitle
+
+Say we have a mass $m$ attached to a spring of rest length $l_0$. Suppose we call the displacement from rest $z$. That way the length of the spring is $l(t) = l_0 + z$. If we measure $\theta$ clockwise from the positive x-axis, then our Cartesian coordinates are defined as:
+
+\begin{align*}
+	x &= (l_0+z)\cos{\theta} &\implies \dot{x} &= \dot{z}\cos{\theta} - (l_0+z)\dot{\theta}\sin{\theta}\\
+	y &= (l_0+z)\sin{\theta} &\implies \dot{y} &= \dot{z}\sin{\theta} + (l_0+z)\dot{\theta}\cos{\theta}.\\
+\end{align*}
+
+Therefore:
+\begin{align*}
+    v^2 &= \dot{x}^2+\dot{y}^2 \\
+	&= \left[\dot{z}\cos{\theta} - (l_0+z)\dot{\theta}\sin{\theta}\right]^2 + \left[\dot{z}\sin{\theta} + (l_0+z)\dot{\theta}\cos{\theta}\right]^2 \\
+	&= \dot{z}^2 \cos^2{\theta} + (l_0+z)^2\dot{\theta}^2\sin^2{\theta} - 2\dot{z}\dot{\theta}(l_0+z)\cos{\theta}\sin{\theta} + \dot{z}^2\sin^2{\theta} + (l_0+z)^2\dot{\theta}^2\cos^2{\theta} + 2\dot{z}\dot{\theta}(l_0+z)\sin{\theta}\cos{\theta} \\
+	&= \dot{z}^2 + (l_0+z)^2\dot{\theta}^2.
+\end{align*}
+
+Hence the kinetic energy is:
+
+\begin{align*}
+	T &= \dfrac{m}{2} v^2 \\
+	&= \dfrac{m}{2} \left[\dot{z}^2 + (l_0+z)^2\dot{\theta}^2\right].
+\end{align*}
+
+As for the potential energy, it will have two components: a spring component,
+
+\begin{align*}
+	V_S &= \dfrac{kz^2}{2};
+\end{align*}
+
+and a graphical component,
+
+\begin{align*}
+	V_G &= mgy \\
+	&= mg(l_0+z)\sin{\theta}.
+\end{align*}
+
+Therefore the total potential energy is:
+
+\begin{align*}
+	V &= V_S + V_G \\
+	&= \dfrac{kz^2}{2} + mg(l_0+z)\sin{\theta}.
+\end{align*}
+
+Hence the Lagrangian is:
+
+\begin{align*}
+    \mathcal{L} &= T - V \\
+    &= \dfrac{m}{2} \left[\dot{z}^2 + \dot{\theta}^2(l_0+z)^2\right] - \dfrac{kz^2}{2} - mg(l_0+z)\sin{\theta}.
+\end{align*}
+\end{document}
