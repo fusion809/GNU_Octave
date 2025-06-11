@@ -12,3 +12,5 @@ octave-workspace
 *.out
 *.log
 *.aux
+*.bbl
+*.blg
