@@ -12,6 +12,6 @@ function dth = EP(params, th, t)
     dz     = th(4);
     dth(1) = th(3);
     dth(2) = th(4);
-    dth(3) = -1/(z+l0)*(2*dtheta*dz + g*cos(theta)) + dtheta*(b+c*sqrt(dz^2+dtheta^2*(z+l0)^2));
-    dth(4) = dtheta^2*(z+l0) + k*z + g*sin(theta) - dz*(b+c*sqrt(dz^2+dtheta^2*(z+l0)^2));
+    dth(3) = -1/(z+l0)*(2*dtheta*dz + g*cos(theta)) - dtheta*(b+c*sqrt(dz^2+dtheta^2*(z+l0)^2));
+    dth(4) = dtheta^2*(z+l0) - k*z - g*sin(theta) - dz*(b+c*sqrt(dz^2+dtheta^2*(z+l0)^2));
 endfunction
