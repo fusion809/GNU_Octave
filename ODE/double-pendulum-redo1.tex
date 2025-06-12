@@ -1,0 +1,205 @@
+\documentclass[12pt,a4paper,landscape]{article}
+%\setcounter{secnumdepth}{0}
+\usepackage{gensymb}
+\usepackage{pdflscape}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{sansmath}
+\usepackage{pst-eucl}
+\usepackage{multicol}
+\usepackage{csquotes}
+% Coding
+\usepackage{listings}
+\setlength{\parindent}{0pt}
+\usepackage[obeyspaces]{url}
+% Better inline directory listings
+\usepackage{xcolor}
+\definecolor{light-gray}{gray}{0.95}
+\newcommand{\code}[1]{\colorbox{light-gray}{\texttt{#1}}}
+\usepackage{adjustbox}
+\usepackage[UKenglish]{isodate}
+\usepackage[UKenglish]{babel}
+\usepackage{float}
+\usepackage[T1]{fontenc}
+\usepackage{setspace}
+\usepackage{sectsty}
+\usepackage{longtable}
+\newenvironment{tightcenter}{%
+	\setlength\topsep{0pt}
+	\setlength\parskip{0pt}
+	\begin{center}
+	}{%
+	\end{center}
+}
+\captionsetup{width=\textwidth}
+\usepackage{mbenotes} % to print table notes!
+\usepackage{alphalph} % For extended counters!
+% usage: \tabnotemark[3]\cmsp\tabnotemark[4]
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=black,bookmarksopen=true]{hyperref}
+\sectionfont{%			            % Change font of \section command
+	\usefont{OT1}{phv}{b}{n}%		% bch-b-n: CharterBT-Bold font
+	\sectionrule{0pt}{0pt}{-5pt}{3pt}}
+\subsectionfont{
+	\usefont{OT1}{phv}{b}{n}}
+\newcommand{\MyName}[1]{ % Name
+	\usefont{OT1}{phv}{b}{n} \begin{center}of {\LARGE  #1}\end{center}
+	\par \normalsize \normalfont}
+\makeatletter
+\newcommand\FirstWord[1]{\@firstword#1 \@nil}%
+\newcommand\@firstword{}%
+\newcommand\@removecomma{}%
+\def\@firstword#1 #2\@nil{\@removecomma#1,\@nil}%
+\def\@removecomma#1,#2\@nil{#1}
+\makeatother
+
+\newcommand{\MyTitle}[1]{ % Name
+	\Huge \usefont{OT1}{phv}{b}{n} \begin{center}#1\end{center}
+	\par \normalsize \normalfont}
+\newcommand{\NewPart}[1]{\section*{\uppercase{#1}}}
+\newcommand{\NewSubPart}[1]{\subsection*{\hspace{0.2cm}#1}}
+\renewcommand{\baselinestretch}{1.05}
+\usepackage[margin=0.2cm]{geometry}
+\date{}
+\title{Double pendulum: damping and non-zero mass of bob and rod}
+\author{Brenton Horne}
+
+\begin{document}
+	\maketitle
+	
+	To obtain our equations of motion, we must apply the Euler-Lagrange equation with a generalized dissipation force ($Q_i = \sum_j \vec{F}_{D,j} \cdot \dfrac{\partial \vec{r_j}}{\partial q_i}$):
+	
+	\begin{align}
+		\dfrac{d}{dt}\dfrac{\partial \mathcal{L}}{\partial \dot{q_i}} - \dfrac{\partial \mathcal{L}}{\partial q_i} &= Q_i. \label{ELD}
+	\end{align}
+	First we must determine the kinetic energy of the first rod:
+	\begin{align*}
+		T_{\mathrm{rot}, 1} &= \dfrac{1}{2} I_{\mathrm{cm}} \dot{\theta}_1^2 \\
+		T_{\mathrm{rot}, 1} &= \dfrac{m_{1r} r_1^2\dot{\theta}_1^2}{12} \\
+		T_{\mathrm{rot}, 1} &= \dfrac{m_{1r} r_1^2\dot{\theta}_1^2}{24}.
+	\end{align*}
+	
+	The second rod should be the same except with its own parameters:
+	\begin{align*}
+		T_{\mathrm{rot}, 2} &= \dfrac{m_{2r} r_2^2\dot{\theta}_2^2}{24}.
+	\end{align*}
+	
+	As for the mass of the first pendulum bob:
+	\begin{align*}
+		T_{1b} &= \dfrac{m_1v_1^2}{2}.
+	\end{align*}
+	
+	The first pendulum bob would have the coordinates:
+	\begin{align*}
+		x_1 &= r_1 \cos{\theta_1} &\implies \dot{x}_1 &= -r_1\dot{\theta}_1 \sin{\theta_1}\\
+		y_1 &= r_1 \sin{\theta_1} &\implies \dot{y}_1 &= r_1 \dot{\theta}_1 \cos{\theta_1}. \\
+	\end{align*}
+	
+	Therefore:
+	
+	\begin{align*}
+		v_1^2 &= \dot{x}_1^2 + \dot{y}_1^2 \\
+		&= \left(-r_1\dot{\theta}_1 \sin{\theta_1}\right)^2 + \left(r_1 \dot{\theta}_1 \cos{\theta_1}\right)^2 \\
+		&= r_1^2 \dot{\theta}_1^2.
+	\end{align*}
+	
+	And the kinetic energy of the first pendulum bob is:
+	
+	\begin{align*}
+		T_{1b} &= \dfrac{m_{1b} v_1^2}{2} \\
+		&= \dfrac{m_{1b} r_1^2 \dot{\theta}_1^2}{2}.
+	\end{align*}
+	
+	Second pendulum bob. The coordinates are:
+	
+	\begin{align*}
+		x_2 &= x_1 + r_2 \cos{\theta_2} \\
+		&= r_1 \cos{\theta_1} + r_2 \cos{\theta_2} &\implies \dot{x}_2 &= -r_1\dot{\theta}_1 \sin{\theta_1}-r_2\dot{\theta}_2 \sin{\theta_2}\\
+		y_2 &= y_1 + r_2 \sin{\theta_2} \\
+		&= r_1 \sin{\theta_1} + r_2 \sin{\theta_2} &\implies \dot{y}_2 &= r_1\dot{\theta}_1 \cos{\theta_1}+r_2\dot{\theta}_2 \cos{\theta_2}.
+	\end{align*}
+	
+	The velocity is therefore:
+	
+	\begin{align*}
+		v_2^2 &= \dot{x}_2^2 + \dot{y}_2^2 \\
+		&= \left(-r_1\dot{\theta}_1 \sin{\theta_1}-r_2\dot{\theta}_2 \sin{\theta_2}\right)^2 + \left(r_1\dot{\theta}_1 \cos{\theta_1}+r_2\dot{\theta}_2 \cos{\theta_2}\right)^2 \\
+		&= r_1^2 \dot{\theta}_1^2 \sin^2{\theta_1} + r_2^2 \dot{\theta}_2^2 \sin^2{\theta_2} + 2r_1 r_2 \dot{\theta}_1\dot{\theta}_2 \sin{\theta_1}\sin{\theta_2} + r_1^2 \dot{\theta}_1^2 \cos^2{\theta_1} + r_2^2 \dot{\theta}_2^2 \cos^2{\theta_2} + 2r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{\theta_1}\cos{\theta_2} \\
+		&= r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 + 2r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{\left(\theta_1-\theta_2\right)}.
+	\end{align*}
+	
+	Therefore the kinetic energy of the second bob is:
+	
+	\begin{align*}
+		T_{2b} &= \dfrac{m_{2b} v_2^2}{2} \\
+		&= \dfrac{m_{2b}}{2} \left(r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 + 2r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{\left(\theta_1-\theta_2\right)}\right).
+	\end{align*}
+	
+	Hence the total kinetic energy is:
+	
+	\begin{align*}
+		T &= T_{1r} + T_{1b} + T_{2r} + T_{2b} \\
+		&= \dfrac{m_{1r}r_1^2\dot{\theta}_1^2}{24} + \dfrac{m_{1b} r_1^2 \dot{\theta}_1^2}{2} + \dfrac{m_{2r} r_2^2\dot{\theta}_2^2}{24} + \dfrac{m_{2b}}{2} \left(r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 + 2r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{\left(\theta_1-\theta_2\right)}\right) \\
+		&= \dfrac{m_{1r} r_1^2 \dot{\theta}_1^2 + m_{2r}r_2^2 \dot{\theta}_2^2}{24} + \dfrac{m_{1b}+m_{2b}}{2}r_1^2 \dot{\theta}_1^2 + \dfrac{m_{2b}}{2} \left(r_2\dot{\theta}_2^2 + 2r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{\left(\theta_1 - \theta_2\right)}\right).
+	\end{align*}
+	
+	Next, we must calculate the potential energy. In this problem, there is only one source of potential energy---gravity. First, we have the gravitational potential energy of the first pendulum rod. For it, we will use the centre of mass of the pendulum for the y coordinate we use to calculate the gravitational potential energy. We will assume it has uniform mass, so its midpoint will be where its centre of mass is. 
+	
+	\begin{align*}
+		V_{1r} &= m_{1r} gy_{1r} \\
+		y_{1r} &= \dfrac{1}{2} y_1 \\
+		&= \dfrac{r_1 \sin{\theta_1}}{2} \\
+		V_{1r} &= \dfrac{m_{1r}gr_1 \sin{\theta_1}}{2}.
+	\end{align*}
+	
+	As for the potential energy of the first pendulum bob:
+	\begin{align*}
+		V_{1b} &= m_{1b} gy_1 \\
+		&= m_{1b}gr_1 \sin{\theta_1}.
+	\end{align*}
+	
+	The potential energy of the second pendulum rod is:
+	
+	\begin{align*}
+		V_{2r} &= m_{2r} gy_{2r} \\
+		y_{2r} &= y_1 + \dfrac{y_2-y_1}{2}\\
+		&= \dfrac{y_1+y_2}{2} \\
+		&= r_1 \sin{\theta_1} + \dfrac{r_2\sin{\theta_2}}{2} \\
+		V_{2r} &= m_{2r}g \left(r_1 \sin{\theta_1} + \dfrac{r_2\sin{\theta_2}}{2}\right).
+	\end{align*}
+	
+	Finally, the potential energy of the second pendulum bob is:
+	
+	\begin{align*}
+		V_{2b} &= m_{2b} gy_2 \\
+		&= m_{2b} g \left(r_1 \sin{\theta_1} + r_2 \sin{\theta_2}\right).
+	\end{align*}
+	
+	Therefore, the total potential energy is:
+	\begin{align*}
+		V &= V_{1r} + V_{2r} + V_{1b} + V_{2b} \\
+		&= \dfrac{m_{1r}gr_1 \sin{\theta_1}}{2} + m_{2r}g \left(r_1 \sin{\theta_1} + \dfrac{r_2\sin{\theta_2}}{2}\right) + m_{1b}gr_1 \sin{\theta_1} + m_{2b} g \left(r_1 \sin{\theta_1} + r_2 \sin{\theta_2}\right).
+	\end{align*}
+	
+	Hence the Lagrangian is:
+	
+	\begin{align*}
+		\mathcal{L} &= T - V \\
+		&= \dfrac{m_{1r} r_1^2 \dot{\theta}_1^2 + m_{2r}r_2^2 \dot{\theta}_2^2}{24} + \dfrac{m_{1b}+m_{2b}}{2}r_1^2 \dot{\theta}_1^2 + \dfrac{m_{2b}}{2} \left(r_2^2\dot{\theta}_2^2 + 2r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{\left(\theta_1 - \theta_2\right)}\right) - \dfrac{m_{1r}gr_1 \sin{\theta_1}}{2} \\
+		&-m_{2r}g \left(r_1 \sin{\theta_1} + \dfrac{r_2\sin{\theta_2}}{2}\right) - m_{1b}gr_1 \sin{\theta_1} - m_{2b} g \left(r_1 \sin{\theta_1} + r_2 \sin{\theta_2}\right).
+	\end{align*}
+	
+	Hence:
+	
+	\begin{align*}
+		p_{\theta_1} &= \dfrac{\partial \mathcal{L}}{\partial \dot{\theta}_1} \\
+		&= \dfrac{m_{1r}r_1^2\dot{\theta}_1}{12}+(m_{1b}+m_{2b})r_1^2 \dot{\theta}_1 + m_{2b}r_1 r_2 \dot{\theta}_2\cos{(\theta_1-\theta_2)} \\
+		\dot{p}_{\theta_1} &= \dfrac{m_{1r}r_1^2 \ddot{\theta_1}}{12} + (m_{1b}+m_{2b})r_1^2 \ddot{\theta_1} + m_{2b} r_1r_2 \ddot{\theta}_2 \cos{(\theta_1-\theta_2)} - m_{2b} r_1r_2 \dot{\theta}_2(\dot{\theta}_1-\dot{\theta}_2)\sin{(\theta_1-\theta_2)} \\
+		F_{\theta_1} &= \dfrac{\partial \mathcal{L}}{\partial \theta_1} \\
+		&= -m_{2b}r_1r_2 \dot{\theta}_1 \dot{\theta}_2 \sin{(\theta_1-\theta_2)}-\dfrac{m_{1r}gr_1\cos{\theta_1}}{2} -m_{2r}gr_1\cos{\theta_1}-m_{1b}gr_1\cos{\theta_1}-m_{2b}gr_1\cos{\theta_1} \\
+	\end{align*}
+	
+\end{document}

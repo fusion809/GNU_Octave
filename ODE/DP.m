@@ -11,7 +11,6 @@ function dth = DP(params, TH, t)
     c1 = params(10);
     c2 = params(11);
     m = m1 + m2;
-    M = m1 + m2;
     dth = zeros(4,1);
     theta1 = TH(1);
     theta2 = TH(2);

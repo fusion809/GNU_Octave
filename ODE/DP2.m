@@ -22,7 +22,7 @@ function dth = DP2(params, th, t)
     dtheta2 = th(4);
     dth(1) = th(2);
     dth(3) = th(4);
-    outercoef = 1/((m2r/12+m2b)*r2 + (m2b^2*r2*cos(theta1-theta2)^2)/(m1r/12 + m1b+m2b));
+    outercoef = 1/((m2r/12+m2b)*r2 - (m2b^2*r2*cos(theta1-theta2)^2)/(m1r/12 + m1b+m2b));
     mass = m1r/2 + m2r + m1b + m2b; 
     v1b = r1*dtheta1;
     v1r = v1b/2;
@@ -39,7 +39,7 @@ function dth = DP2(params, th, t)
     extra = m2b*(r1*dtheta1^2*sin(theta1-theta2)-g*cos(theta2))-drag2r2-drag2b2;
     dth(4) = outercoef*(inner+extra);
     outercoef1 = 1/((m1r/12+m1b+m2b)*r1);
-    inner11 = m2b*r2*(dth(4)*cos(theta1-theta2)+dtheta2^2*sin(theta1-theta2));
+    inner11 = -m2b*r2*(dth(4)*cos(theta1-theta2)+dtheta2^2*sin(theta1-theta2));
     inner12 = -g*cos(theta1)*mass - drag1b - drag2b - drag1r - drag2r;
     dth(2) = outercoef1*(inner11 + inner12);
 endfunction
