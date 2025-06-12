@@ -7,19 +7,21 @@ m1r        = 1;
 m2r        = 1;
 m1b        = 1;
 m2b        = 1;
-b1r        = 0.03;
-b1b        = 0.03;
-b2r        = 0.03;
-b2b        = 0.03;
-c1r        = 0.01;
-c2r        = 0.01;
-c1b        = 0.01;
-c2b        = 0.01;
+b1r        = 0.05;
+b1b        = 0.05;
+b2r        = 0.05;
+b2b        = 0.05;
+c1r        = 0.02;
+c2r        = 0.02;
+c1b        = 0.02;
+c2b        = 0.02;
+
 params     = struct("g", g, "r1", r1, "r2", r2, "m1r", m1r, "m1b", m1b, ...
 "m2r", m2r, "m2b", m2b, "b1r", b1r, "b1b", b1b, "b2r", b2r, "b2b", b2b, ...
 "c1r", c1r, "c1b", c1b, "c2r", c2r, "c2b", c2b);
 t0         = 0;
-tf         = 20;
+tf         = 40;
+descriptor = ["masses = ", num2str(m1r), ", bcoefs = ", num2str(b1r), ", ccoefs = ", num2str(c1r), ", tf = ", num2str(tf)];
 theta10    = 0;
 theta20    = 0;
 dtheta10   = 0;
@@ -129,9 +131,9 @@ figure(5); clf;
 axis equal off;
 axis([-2.2 2.2 -2.2 2.2]);
 hold on;
-
+delay = 5;
 % Output GIF filename
-gifname = "Figure 5 Double pendulum 1 delay 3 lin drag and 1 quad drag coeffs.gif";
+gifname = ["Figure 5 Double pendulum ", num2str(delay), " delay ", descriptor, ".gif"];
 
 frame(length(1:length(t))) = struct('cdata', [], 'colormap', []);
 k = 1;
@@ -148,7 +150,7 @@ for i = 1:length(t)
   k = k+1;
 end
 
-delay = 1;
+
 for k=1:delay:length(frame)
   img = frame2im(frame(k));
   [A, map] = rgb2ind(img);
@@ -160,4 +162,4 @@ for k=1:delay:length(frame)
   end
 end
 
-disp("GIF saved as 'Figure 5 Double pendulum 1 delay 3 lin drag and 1 quad drag coeffs.gif'");
+disp(["GIF saved as ", gifname]);
