@@ -3,8 +3,8 @@ N          = 10000;
 g          = 9.81;
 r1         = 1;
 r2         = 1;
-m1r        = 1;
-m2r        = 1;
+m1r        = 0;
+m2r        = 0;
 m1b        = 1;
 m2b        = 1;
 b1r        = 0.10;
@@ -15,12 +15,12 @@ c1r        = 0.04;
 c2r        = 0.04;
 c1b        = 0.04;
 c2b        = 0.04;
-delay      = 1;
+delay      = 0;
 params     = struct("g", g, "r1", r1, "r2", r2, "m1r", m1r, "m1b", m1b, ...
 "m2r", m2r, "m2b", m2b, "b1r", b1r, "b1b", b1b, "b2r", b2r, "b2b", b2b, ...
 "c1r", c1r, "c1b", c1b, "c2r", c2r, "c2b", c2b);
 t0         = 0;
-tf         = 10;
+tf         = 40;
 descriptor = ["masses = ", num2str(m1r), ", bcoefs = ", num2str(b1r), ", ccoefs = ", num2str(c1r), ", tf = ", num2str(tf)];
 theta10    = 0;
 theta20    = 0;
@@ -127,38 +127,40 @@ x2 = x1 + r2 * cos(theta2);
 y2 = y1 + r2 * sin(theta2);
 
 % Set up figure
-figure(5); clf;
-axis equal off;
-axis([-2.2 2.2 -2.2 2.2]);
-hold on;
-% Output GIF filename
-gifname = ["Figure 5 Double pendulum ", num2str(delay), " delay ", descriptor, ".gif"];
+if (delay != 0)
+  figure(5); clf;
+  axis equal off;
+  axis([-2.2 2.2 -2.2 2.2]);
+  hold on;
+  % Output GIF filename
+  gifname = ["Figure 5 Double pendulum ", num2str(delay), " delay ", descriptor, ".gif"];
 
-frame(length(1:length(t))) = struct('cdata', [], 'colormap', []);
-k = 1;
-for i = 1:length(t)
-    cla;
-  plot([0 x1(i)], [0 y1(i)], 'b-', 'LineWidth', 2);      % Rod 1
-  plot([x1(i) x2(i)], [y1(i) y2(i)], 'r-', 'LineWidth', 2);  % Rod 2
-  plot(x1(i), y1(i), 'bo', 'MarkerSize', 8, 'MarkerFaceColor', 'b');
-  plot(x2(i), y2(i), 'ro', 'MarkerSize', 8, 'MarkerFaceColor', 'r');
-  title(sprintf("t = %.2f s", t(i)));
+  frame(length(1:length(t))) = struct('cdata', [], 'colormap', []);
+  k = 1;
+  for i = 1:length(t)
+      cla;
+    plot([0 x1(i)], [0 y1(i)], 'b-', 'LineWidth', 2);      % Rod 1
+    plot([x1(i) x2(i)], [y1(i) y2(i)], 'r-', 'LineWidth', 2);  % Rod 2
+    plot(x1(i), y1(i), 'bo', 'MarkerSize', 8, 'MarkerFaceColor', 'b');
+    plot(x2(i), y2(i), 'ro', 'MarkerSize', 8, 'MarkerFaceColor', 'r');
+    title(sprintf("t = %.2f s", t(i)));
 
-  drawnow;
-  frame(k) = getframe(gcf);
-  k = k+1;
-end
-
-
-for k=1:delay:length(frame)
-  img = frame2im(frame(k));
-  [A, map] = rgb2ind(img);
-
-  if k == 1
-    imwrite(A, map, gifname, "gif", "LoopCount", Inf, "DelayTime", dt(k));
-  else
-    imwrite(A, map, gifname, "gif", "WriteMode", "append", "DelayTime", dt(k));
+    drawnow;
+    frame(k) = getframe(gcf);
+    k = k+1;
   end
-end
 
-disp(["GIF saved as ", gifname]);
+
+  for k=1:delay:length(frame)
+    img = frame2im(frame(k));
+    [A, map] = rgb2ind(img);
+
+    if k == 1
+      imwrite(A, map, gifname, "gif", "LoopCount", Inf, "DelayTime", dt(k));
+    else
+      imwrite(A, map, gifname, "gif", "WriteMode", "append", "DelayTime", dt(k));
+    end
+  end
+
+  disp(["GIF saved as ", gifname]);
+end
