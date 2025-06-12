@@ -14,3 +14,4 @@ octave-workspace
 *.aux
 *.bbl
 *.blg
+*.toc
