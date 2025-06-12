@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper,portrait]{article}
+\documentclass[12pt,a4paper,landscape]{article}
 %\setcounter{secnumdepth}{0}
 \usepackage{gensymb}
 \usepackage{pdflscape}
@@ -89,7 +89,7 @@
 	
 	As for the mass of the first pendulum bob:
 	\begin{align*}
-		T_{\mathrm{bob}, 1} &= \dfrac{m_1v_1^2}{2}.
+		T_{1b} &= \dfrac{m_1v_1^2}{2}.
 	\end{align*}
 	
 	The first pendulum bob would have the coordinates:
@@ -109,7 +109,7 @@
 	And the kinetic energy of the first pendulum bob is:
 	
 	\begin{align*}
-		T_{\mathrm{bob}, 1} &= \dfrac{m_{1b} v_1^2}{2} \\
+		T_{1b} &= \dfrac{m_{1b} v_1^2}{2} \\
 		&= \dfrac{m_{1b} r_1^2 \dot{\theta}_1^2}{2}.
 	\end{align*}
 	
@@ -134,14 +134,14 @@
 	Therefore the kinetic energy of the second bob is:
 	
 	\begin{align*}
-		T_{\mathrm{bob}, 2} &= \dfrac{m_{2b} v_2^2}{2} \\
+		T_{2b} &= \dfrac{m_{2b} v_2^2}{2} \\
 		&= \dfrac{m_{2b}}{2} \left(r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 + 2r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{\left(\theta_1-\theta_2\right)}\right).
 	\end{align*}
 	
 	Hence the total kinetic energy is:
 	
 	\begin{align*}
-		T &= T_{\mathrm{rod}, 1} + T_{\mathrm{bob}, 1} + T_{\mathrm{rod}, 2} + T_{\mathrm{bob}, 2} \\
+		T &= T_{1r} + T_{1b} + T_{2r} + T_{2b} \\
 		&= \dfrac{m_{1r}r_1^2\dot{\theta}_1^2}{24} + \dfrac{m_{1b} r_1^2 \dot{\theta}_1^2}{2} + \dfrac{m_{2r} r_2^2\dot{\theta}_2^2}{24} + \dfrac{m_{2b}}{2} \left(r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 + 2r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{\left(\theta_1-\theta_2\right)}\right) \\
 		&= \dfrac{m_{1r} r_1^2 \dot{\theta}_1^2 + m_{2r}r_2^2 \dot{\theta}_2^2}{24} + \dfrac{m_{1b}+m_{2b}}{2}r_1^2 \dot{\theta}_1^2 + \dfrac{m_{2b}}{2} \left(r_2\dot{\theta}_2^2 + 2r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{\left(\theta_1 - \theta_2\right)}\right).
 	\end{align*}
@@ -149,38 +149,38 @@
 	Next, we must calculate the potential energy. In this problem, there is only one source of potential energy---gravity. First, we have the gravitational potential energy of the first pendulum rod. For it, we will use the centre of mass of the pendulum for the y coordinate we use to calculate the gravitational potential energy. We will assume it has uniform mass, so its midpoint will be where its centre of mass is. 
 	
 	\begin{align*}
-		V_{\mathrm{rod}, 1} &= m_{1r} gy_{\mathrm{rod}, 1} \\
-		y_{\mathrm{rod}, 1} &= \dfrac{1}{2} y_1 \\
+		V_{1r} &= m_{1r} gy_{1r} \\
+		y_{1r} &= \dfrac{1}{2} y_1 \\
 		&= \dfrac{r_1 \sin{\theta_1}}{2} \\
-		V_{\mathrm{rod}, 1} &= \dfrac{m_{1r}gr_1 \sin{\theta_1}}{2}.
+		V_{1r} &= \dfrac{m_{1r}gr_1 \sin{\theta_1}}{2}.
 	\end{align*}
 	
 	As for the potential energy of the first pendulum bob:
 	\begin{align*}
-		V_{\mathrm{bob}, 1} &= m_{1b} gy_1 \\
+		V_{1b} &= m_{1b} gy_1 \\
 		&= m_{1b}gr_1 \sin{\theta_1}.
 	\end{align*}
 	
 	The potential energy of the second pendulum rod is:
 	
 	\begin{align*}
-		V_{\mathrm{rod}, 2} &= m_{2r} gy_{\mathrm{rod}, 2} \\
-		y_{\mathrm{rod}, 2} &= y_1 + \dfrac{y_2-y_1}{2}\\
+		V_{2r} &= m_{2r} gy_{2r} \\
+		y_{2r} &= y_1 + \dfrac{y_2-y_1}{2}\\
 		&= \dfrac{y_1+y_2}{2} \\
 		&= r_1 \sin{\theta_1} + \dfrac{r_2\sin{\theta_2}}{2} \\
-		V_{\mathrm{rod}, 2} &= m_{2r}g \left(r_1 \sin{\theta_1} + \dfrac{r_2\sin{\theta_2}}{2}\right).
+		V_{2r} &= m_{2r}g \left(r_1 \sin{\theta_1} + \dfrac{r_2\sin{\theta_2}}{2}\right).
 	\end{align*}
 	
 	Finally, the potential energy of the second pendulum bob is:
 	
 	\begin{align*}
-		V_{\mathrm{bob}, 2} &= m_{2b} gy_2 \\
+		V_{2b} &= m_{2b} gy_2 \\
 		&= m_{2b} g \left(r_1 \sin{\theta_1} + r_2 \sin{\theta_2}\right).
 	\end{align*}
 	
 	Therefore, the total potential energy is:
 	\begin{align*}
-		V &= V_{\mathrm{rod}, 1} + V_{\mathrm{rod}, 2} + V_{\mathrm{bob}, 1} + V_{\mathrm{bob}, 2} \\
+		V &= V_{1r} + V_{2r} + V_{1b} + V_{2b} \\
 		&= \dfrac{m_{1r}gr_1 \sin{\theta_1}}{2} + m_{2r}g \left(r_1 \sin{\theta_1} + \dfrac{r_2\sin{\theta_2}}{2}\right) + m_{1b}gr_1 \sin{\theta_1} + m_{2b} g \left(r_1 \sin{\theta_1} + r_2 \sin{\theta_2}\right).
 	\end{align*}
 	
@@ -188,7 +188,7 @@
 	
 	\begin{align*}
 		\mathcal{L} &= T - V \\
-		&= \dfrac{m_{1r} r_1^2 \dot{\theta}_1^2 + m_{2r}r_2^2 \dot{\theta}_2^2}{24} + \dfrac{m_{1b}+m_{2b}}{2}r_1^2 \dot{\theta}_1^2 + \dfrac{m_{2b}}{2} \left(r_2\dot{\theta}_2^2 + 2r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{\left(\theta_1 - \theta_2\right)}\right) - \dfrac{m_{1r}gr_1 \sin{\theta_1}}{2} \\
+		&= \dfrac{m_{1r} r_1^2 \dot{\theta}_1^2 + m_{2r}r_2^2 \dot{\theta}_2^2}{24} + \dfrac{m_{1b}+m_{2b}}{2}r_1^2 \dot{\theta}_1^2 + \dfrac{m_{2b}}{2} \left(r_2^2\dot{\theta}_2^2 + 2r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{\left(\theta_1 - \theta_2\right)}\right) - \dfrac{m_{1r}gr_1 \sin{\theta_1}}{2} \\
 		&-m_{2r}g \left(r_1 \sin{\theta_1} + \dfrac{r_2\sin{\theta_2}}{2}\right) - m_{1b}gr_1 \sin{\theta_1} - m_{2b} g \left(r_1 \sin{\theta_1} + r_2 \sin{\theta_2}\right).
 	\end{align*}
 	
@@ -205,42 +205,57 @@
 	As for the generalized dissipation force:
 	
 	\begin{align*}
-		Q_{\theta_1} &= \vec{F}_{D, \mathrm{rod}, 1} \cdot \dfrac{\partial \vec{r}_{\mathrm{rod},1}}{\partial \theta_1} + \vec{F}_{D, \mathrm{bob}, 1} \cdot \dfrac{\partial \vec{r}_{\mathrm{bob},1}}{\partial \theta_1}+ \vec{F}_{D, \mathrm{rod}, 2} \cdot \dfrac{\partial \vec{r}_{rod, 2}}{\partial \theta_1} + \vec{F}_{D, \mathrm{bob}, 2} \cdot \dfrac{\partial \vec{r}_{\mathrm{bob}, 2}}{\partial \theta_1}
+		Q_{\theta_1} &= \vec{F}_{D, 1r} \cdot \dfrac{\partial \vec{r}_{1r}}{\partial \theta_1} + \vec{F}_{D, 1b} \cdot \dfrac{\partial \vec{r}_{1b}}{\partial \theta_1}+ \vec{F}_{D, 2r} \cdot \dfrac{\partial \vec{r}_{rod, 2}}{\partial \theta_1} + \vec{F}_{D, 2b} \cdot \dfrac{\partial \vec{r}_{2b}}{\partial \theta_1}
 	\end{align*}
 	
 	\begin{align*}
-		\vec{F}_{D,\mathrm{bob}, 1} &= -b_{\mathrm{bob}, 1}\vec{v}_1 - c_{\mathrm{bob}, 1}|\vec{v}_1|\vec{v}_1\\
-		\therefore \vec{F}_{D, \mathrm{bob}, 1} \cdot \dfrac{\partial \vec{r}_{\mathrm{bob},1}}{\partial \theta_1}&= (-b_{\mathrm{bob}, 1} - c_{\mathrm{bob}, 1}r_1\dot{\theta}_1)\begin{bmatrix}
+		\vec{F}_{D,1b} &= -b_{1b}\vec{v}_1 - c_{1b}|\vec{v}_1|\vec{v}_1\\
+		\vec{r}_{1b} &= \begin{bmatrix}
+			x_1\\
+			y_1
+		\end{bmatrix} \\
+		&= r_1\begin{bmatrix}
+			\cos{\theta_1} \\
+			\sin{\theta_1}
+		\end{bmatrix} \\
+		\therefore \vec{F}_{D, 1b} \cdot \dfrac{\partial \vec{r}_{1b}}{\partial \theta_1}&= (-b_{1b} - c_{1b}r_1\dot{\theta}_1)\begin{bmatrix}
 			-r_1\dot{\theta}_1 \sin{\theta_1} \\
 			r_1\dot{\theta}_1 \cos{\theta_1}
 			\end{bmatrix} \cdot \begin{bmatrix}
 			-r_1 \sin{\theta_1} \\
 			r_1 \cos{\theta_1}
 		\end{bmatrix} \\
-		&= -(b_{\mathrm{bob}, 1}+c_{\mathrm{bob}, 1}r_1\dot{\theta}_1) (r_1^2 \dot{\theta}_1 \sin^2{\theta_1}+r_1^2 \dot{\theta}_1 \cos^2{\theta_1}) \\
-		&= -(b_{\mathrm{bob}, 1} + c_{\mathrm{bob}, 1} r_1 \dot{\theta}_1)r_1^2 \dot{\theta}_1 \\
-		\vec{F}_{D,\mathrm{bob, 2}} &= -b_{\mathrm{bob}, 2}\vec{v}_2 - c_{\mathrm{bob}, 2}|\vec{v}_2|\vec{v}_2 \\
-		&= -\left(b_{\mathrm{bob}, 2}+c_{\mathrm{bob}, 2}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1 r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right) \begin{bmatrix}
+		&= -(b_{1b}+c_{1b}r_1\dot{\theta}_1) (r_1^2 \dot{\theta}_1 \sin^2{\theta_1}+r_1^2 \dot{\theta}_1 \cos^2{\theta_1}) \\
+		&= -(b_{1b} + c_{1b} r_1 \dot{\theta}_1)r_1^2 \dot{\theta}_1 \\
+		\vec{F}_{D,2b} &= -b_{2b}\vec{v}_2 - c_{2b}|\vec{v}_2|\vec{v}_2 \\
+		&= -\left(b_{2b}+c_{2b}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1 r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right) \begin{bmatrix}
 			-r_1\dot{\theta}_1 \sin{\theta_1}-r_2\dot{\theta}_2 \sin{\theta_2} \\
 			r_1\dot{\theta}_1 \cos{\theta_1}+r_2\dot{\theta}_2 \cos{\theta_2}
 		\end{bmatrix} \\
-		\vec{F}_{D, \mathrm{bob}, 2} \cdot \dfrac{\partial \vec{r}_{\mathrm{bob},2}}{\partial \theta_1} &= -\left(b_{\mathrm{bob}, 2}+c_{\mathrm{bob}, 2}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1 r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right) \begin{bmatrix}
+		\vec{r}_{2b} &= \begin{bmatrix}
+			x_2 \\
+			y_2
+		\end{bmatrix} \\
+		&= \begin{bmatrix}
+			r_1 \cos{\theta_1} + r_2\cos{\theta_2} \\
+			r_1 \sin{\theta_1} + r_2\sin{\theta_2}
+		\end{bmatrix}\\
+		\vec{F}_{D, 2b} \cdot \dfrac{\partial \vec{r}_{2b}}{\partial \theta_1} &= -\left(b_{2b}+c_{2b}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1 r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right) \begin{bmatrix}
 			-r_1\dot{\theta}_1 \sin{\theta_1}-r_2\dot{\theta}_2 \sin{\theta_2} \\
 			r_1\dot{\theta}_1 \cos{\theta_1}+r_2\dot{\theta}_2 \cos{\theta_2}
-		\end{bmatrix} \\&\cdot \begin{bmatrix}
+		\end{bmatrix} \cdot \begin{bmatrix}
 		-r_1 \sin{\theta_1} \\
 		r_1 \cos{\theta_1}
 		\end{bmatrix}\\
-		&= -\left(b_{\mathrm{bob}, 2}+c_{\mathrm{bob}, 2}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1 r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right)(r_1^2 \dot{\theta}_1 \sin^2{\theta_1}+r_1r_2 \dot{\theta}_2 \sin{\theta_1}\sin{\theta_2} \\
-		&+r_1^2 \dot{\theta_1}\cos^2{\theta_1}+r_1r_2\dot{\theta}_2 \cos{\theta_1}\cos{\theta_2}) \\
-		&= -\left(b_{\mathrm{bob}, 2}+c_{\mathrm{bob}, 2}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1 r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right)(r_1^2 \dot{\theta}_1 + r_1r_2 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}).
+		&= -\left(b_{2b}+c_{2b}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1 r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right)(r_1^2 \dot{\theta}_1 \sin^2{\theta_1}+r_1r_2 \dot{\theta}_2 \sin{\theta_1}\sin{\theta_2} +r_1^2 \dot{\theta_1}\cos^2{\theta_1}+r_1r_2\dot{\theta}_2 \cos{\theta_1}\cos{\theta_2}) \\
+		&= -\left(b_{2b}+c_{2b}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1 r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right)(r_1^2 \dot{\theta}_1 + r_1r_2 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}).
 	\end{align*}
 	
 	Next we will calculate the dissipation force on the first rod. We will use a centre of mass approximation (as otherwise we would likely have to integrate over the rod, which would drastically complicate the calculation):
 	
 	\begin{align*}
-		\vec{F}_{D,\mathrm{rod}, 1} &= -\left(b_{\mathrm{rod}, 1} + c_{\mathrm{rod}, 1}|\vec{v}_{\mathrm{rod}, 1}|\right)\vec{v}_{\mathrm{rod}, 1} \\
-		\vec{v}_{\mathrm{rod}, 1} &= \begin{bmatrix}
+		\vec{F}_{D,1r} &= -\left(b_{1r} + c_{1r}|\vec{v}_{1r}|\right)\vec{v}_{1r} \\
+		\vec{v}_{1r} &= \begin{bmatrix}
 			\dfrac{-r_1 \dot{\theta}_1 \sin{\theta_1}}{2} \\
 			\dfrac{r_1 \dot{\theta}_1 \cos{\theta_1}}{2}
 		\end{bmatrix} \\
@@ -248,53 +263,58 @@
 			-\sin{\theta_1} \\
 			\cos{\theta_1}
 		\end{bmatrix} \\
-		\therefore |\vec{v}_{\mathrm{rod}, 1}| &= \dfrac{r_1 \dot{\theta}_1}{2} \\
-		\vec{F}_{D,\mathrm{rod}, 1} &= -\left(b_{\mathrm{rod}, 1} + \dfrac{c_{\mathrm{rod}, 1}r_1 \dot{\theta}_1}{2}\right)\dfrac{r_1 \dot{\theta}_1}{2} \begin{bmatrix}
+		\therefore |\vec{v}_{1r}| &= \dfrac{r_1 \dot{\theta}_1}{2} \\
+		\vec{F}_{D,1r} &= -\left(b_{1r} + \dfrac{c_{1r}r_1 \dot{\theta}_1}{2}\right)\dfrac{r_1 \dot{\theta}_1}{2} \begin{bmatrix}
 			-\sin{\theta_1} \\
 			\cos{\theta_1}
 		\end{bmatrix} \\
-		\dfrac{\partial \vec{r}_{\mathrm{rod}, 1}}{\partial \theta_1} &= \dfrac{r_1}{2}\begin{bmatrix}
+		\vec{r}_{1r} &= \dfrac{r_1}{2}\begin{bmatrix}
+			\cos{\theta_1} \\
+			\sin{\theta_1}
+		\end{bmatrix} \\
+		\dfrac{\partial \vec{r}_{1r}}{\partial \theta_1} &= \dfrac{r_1}{2}\begin{bmatrix}
 			-\sin{\theta_1} \\
 			\cos{\theta_1}
 		\end{bmatrix} \\
-		\vec{F}_{D,\mathrm{rod}, 1} \cdot \dfrac{\partial \vec{r}_{\mathrm{rod}, 1}}{\partial \theta_1} &= -\left(b_{\mathrm{rod}, 1} + \dfrac{c_{\mathrm{rod}, 1}r_1 \dot{\theta}_1}{2}\right)\dfrac{r_1 \dot{\theta}_1}{2} \begin{bmatrix}
+		\vec{F}_{D,1r} \cdot \dfrac{\partial \vec{r}_{1r}}{\partial \theta_1} &= -\left(b_{1r} + \dfrac{c_{1r}r_1 \dot{\theta}_1}{2}\right)\dfrac{r_1 \dot{\theta}_1}{2} \begin{bmatrix}
 			-\sin{\theta_1} \\
 			\cos{\theta_1}
 		\end{bmatrix} \cdot \dfrac{r_1}{2}\begin{bmatrix}
 			-\sin{\theta_1} \\
 			\cos{\theta_1}
 		\end{bmatrix} \\
-		&= -\left(b_{\mathrm{rod}, 1} + \dfrac{c_{\mathrm{rod}, 1}r_1 \dot{\theta}_1}{2}\right) \dfrac{r_1^2 \dot{\theta}_1}{4} \\
+		&= -\left(b_{1r} + \dfrac{c_{1r}r_1 \dot{\theta}_1}{2}\right) \dfrac{r_1^2 \dot{\theta}_1}{4} \\
 	\end{align*}
 	\begin{align*}
-		\vec{F}_{D,\mathrm{rod}, 2} &= -\left(b_{\mathrm{rod}, 2} + c_{\mathrm{rod}, 2}|\vec{v}_{\mathrm{rod}, 2}|\right)\vec{v}_{\mathrm{rod}, 2} \\
-		\vec{v}_{\mathrm{rod}, 2} &= \begin{bmatrix}
+		\vec{F}_{D,2r} &= -\left(b_{2r} + c_{2r}|\vec{v}_{2r}|\right)\vec{v}_{2r} \\
+		\vec{v}_{2r} &= \begin{bmatrix}
 			-r_1 \dot{\theta}_1\sin{\theta_1} - \dfrac{r_2\dot{\theta}_2\sin{\theta_2}}{2}\\
 			r_1 \dot{\theta}_1 \cos{\theta_1} + \dfrac{r_2\dot{\theta}_2\cos{\theta_2}}{2}
 		\end{bmatrix} \\
-		|\vec{v}_{\mathrm{rod}, 2}|^2 &= \left(	-r_1 \dot{\theta}_1\sin{\theta_1} - \dfrac{r_2\dot{\theta}_2\sin{\theta_2}}{2}\right)^2 + \left(r_1 \dot{\theta}_1 \cos{\theta_1} + \dfrac{r_2\dot{\theta}_2\cos{\theta_2}}{2}\right)^2 \\
-		&= r_1^2 \dot{\theta}_1^2 \sin^2{\theta_1} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2\sin{\theta_1}\sin{\theta_2} + \dfrac{r_2^2 \dot{\theta}_2^2 \sin^2{\theta_2}}{4} + r_1^2 \dot{\theta}_1^2 \cos^2{\theta_1} + r_1r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{\theta_1}\cos{\theta_2}\\
-		&+ \dfrac{r_2^2 \dot{\theta}_2^2 \cos^2{\theta_2}}{4} \\
+		|\vec{v}_{2r}|^2 &= \left(	-r_1 \dot{\theta}_1\sin{\theta_1} - \dfrac{r_2\dot{\theta}_2\sin{\theta_2}}{2}\right)^2 + \left(r_1 \dot{\theta}_1 \cos{\theta_1} + \dfrac{r_2\dot{\theta}_2\cos{\theta_2}}{2}\right)^2 \\
+		&= r_1^2 \dot{\theta}_1^2 \sin^2{\theta_1} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2\sin{\theta_1}\sin{\theta_2} + \dfrac{r_2^2 \dot{\theta}_2^2 \sin^2{\theta_2}}{4} + r_1^2 \dot{\theta}_1^2 \cos^2{\theta_1} + r_1r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{\theta_1}\cos{\theta_2}+ \dfrac{r_2^2 \dot{\theta}_2^2 \cos^2{\theta_2}}{4} \\
 		&= r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)} \\
-		|\vec{v}_{\mathrm{rod}, 2}| &= \sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}} \\
-		\vec{F}_{D,\mathrm{rod}, 2} &= -\left(b_{\mathrm{rod}, 2} + c_{\mathrm{rod}, 2}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right)\begin{bmatrix}
+		|\vec{v}_{2r}| &= \sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}} \\
+		\vec{F}_{D,2r} &= -\left(b_{2r} + c_{2r}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right)\begin{bmatrix}
 			-r_1 \dot{\theta}_1\sin{\theta_1} - \dfrac{r_2\dot{\theta}_2\sin{\theta_2}}{2}\\
 			r_1 \dot{\theta}_1 \cos{\theta_1} + \dfrac{r_2\dot{\theta}_2\cos{\theta_2}}{2}
 		\end{bmatrix} \\
-		\dfrac{\partial \vec{r}_{\mathrm{rod}, 2}}{\partial \theta_1} &= \begin{bmatrix}
+		\vec{r}_{2r} &= \begin{bmatrix}
+			r_1 \cos{\theta_1} + \dfrac{r_2 \cos{\theta_2}}{2} \\
+			r_1 \sin{\theta_1} + \dfrac{r_2 \sin{\theta_2}}{2}
+		\end{bmatrix}\\
+		\dfrac{\partial \vec{r}_{2r}}{\partial \theta_1} &= \begin{bmatrix}
 			-r_1 \sin{\theta_1} \\
 			r_1 \cos{\theta_1}
 		\end{bmatrix}\\
-		\vec{F}_{D,\mathrm{rod}, 2}\cdot \dfrac{\partial \vec{r}_{\mathrm{rod}, 2}}{\partial \theta_1} &= -\left(b_{\mathrm{rod}, 2} + c_{\mathrm{rod}, 2}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right) (r_1^2 \dot{\theta}_1 \sin^2{\theta_1} + \dfrac{r_1 r_2 \dot{\theta}_2 \sin{\theta_1}\sin{\theta_2}}{2} \\
-		&+r_1^2 \dot{\theta}_1\cos^2{\theta_1} + \dfrac{r_1r_2 \dot{\theta}_2 \cos{\theta_1}\cos{\theta_2}}{2}) \\
-		&= -\left(b_{\mathrm{rod}, 2} + c_{\mathrm{rod}, 2}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right)\left(r_1^2 \dot{\theta}_1^2 + \dfrac{r_1 r_2\dot{\theta}_2 \cos{\left(\theta_1 - \theta_2\right)}}{2}\right).
+		\vec{F}_{D,2r}\cdot \dfrac{\partial \vec{r}_{2r}}{\partial \theta_1} &= -\left(b_{2r} + c_{2r}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right) (r_1^2 \dot{\theta}_1 \sin^2{\theta_1} + \dfrac{r_1 r_2 \dot{\theta}_2 \sin{\theta_1}\sin{\theta_2}}{2} +r_1^2 \dot{\theta}_1\cos^2{\theta_1} + \dfrac{r_1r_2 \dot{\theta}_2 \cos{\theta_1}\cos{\theta_2}}{2}) \\
+		&= -\left(b_{2r} + c_{2r}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right)\left(r_1^2 \dot{\theta}_1^2 + \dfrac{r_1 r_2\dot{\theta}_2 \cos{\left(\theta_1 - \theta_2\right)}}{2}\right).
 	\end{align*}
 	
 	Hence $Q_{\theta_1}$ is:
 	\begin{align*}
-		Q_{\theta_1} &= -(b_{\mathrm{bob}, 1} + c_{\mathrm{bob}, 1} r_1 \dot{\theta}_1)r_1^2 \dot{\theta}_1 -\left(b_{\mathrm{bob}, 2}+c_{\mathrm{bob}, 2}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1 r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right)(r_1^2 \dot{\theta}_1 \\
-		&+ r_1r_2 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}) -\left(b_{\mathrm{rod}, 1} + \dfrac{c_{\mathrm{rod}, 1}r_1 \dot{\theta}_1}{2}\right) \dfrac{r_1^2 \dot{\theta}_1}{4} \\
-		& -\left(b_{\mathrm{rod}, 2} + c_{\mathrm{rod}, 2}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right)\left(r_1^2 \dot{\theta}_1^2 + \dfrac{r_1 r_2\dot{\theta}_2 \cos{\left(\theta_1 - \theta_2\right)}}{2}\right).
+		Q_{\theta_1} &= -(b_{1b} + c_{1b} r_1 \dot{\theta}_1)r_1^2 \dot{\theta}_1 -\left(b_{2b}+c_{2b}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1 r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right)(r_1^2 \dot{\theta}_1 + r_1r_2 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}) -\left(b_{1r} + \dfrac{c_{1r}r_1 \dot{\theta}_1}{2}\right) \dfrac{r_1^2 \dot{\theta}_1}{4} \\
+		&-\left(b_{2r} + c_{2r}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right)\left(r_1^2 \dot{\theta}_1^2 + \dfrac{r_1 r_2\dot{\theta}_2 \cos{\left(\theta_1 - \theta_2\right)}}{2}\right).
 	\end{align*}
 	
 	The equation of motion for $\theta_1$ is therefore:
@@ -304,14 +324,124 @@
 	\end{align*}
 	
 	\begin{align*}
-		&\dfrac{m_{1r} r_1^2 \ddot{\theta}_1}{12} + (m_{1b}+m_{2b})r_1^2 \ddot{\theta}_1 + m_{2b}r_1 r_2 \ddot{\theta}_2\cos{(\theta_1-\theta_2)} - m_{2b}r_1 r_2 \dot{\theta}_2\left(\dot{\theta}_1 - \dot{\theta}_2\right)\sin{(\theta_1-\theta_2)} \\
-		&- (-m_{2b}r_1r_2\dot{\theta}_1\dot{\theta}_2 \sin{(\theta_1-\theta_2)} - \dfrac{m_{1r}gr_1 \cos{\theta_1}}{2} -m_{2r}gr_1 \cos{\theta_1} -m_{1b}gr_1 \cos{\theta_1} -m_{2b}gr_1 \cos{\theta_1}) = -(b_{\mathrm{bob}, 1} \\
-		&+ c_{\mathrm{bob}, 1} r_1 \dot{\theta}_1)r_1^2 \dot{\theta}_1 -\left(b_{\mathrm{bob}, 2}+c_{\mathrm{bob}, 2}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1 r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right)(r_1^2 \dot{\theta}_1 \\
-		&+ r_1r_2 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}) -\left(b_{\mathrm{rod}, 1} + \dfrac{c_{\mathrm{rod}, 1}r_1 \dot{\theta}_1}{2}\right) \dfrac{r_1^2 \dot{\theta}_1}{4} \\
-		& -\left(b_{\mathrm{rod}, 2} + c_{\mathrm{rod}, 2}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right)\left(r_1^2 \dot{\theta}_1^2 + \dfrac{r_1 r_2\dot{\theta}_2 \cos{\left(\theta_1 - \theta_2\right)}}{2}\right) \\
-		&\dfrac{m_{1r} r_1^2 \ddot{\theta}_1}{12} + (m_{1b}+m_{2b})r_1^2 \ddot{\theta}_1 + m_{2b}r_1 r_2 \ddot{\theta}_2\cos{(\theta_1-\theta_2)} + m_{2b}r_1 r_2 \dot{\theta}_2^2\sin{(\theta_1-\theta_2)} \\
-		&+ \dfrac{m_{1r}gr_1 \cos{\theta_1}}{2} +m_{2r}gr_1 \cos{\theta_1} +m_{1b}gr_1 \cos{\theta_1} +m_{2b}gr_1 \cos{\theta_1} = -(b_{\mathrm{bob}, 1} + c_{\mathrm{bob}, 1} r_1 \dot{\theta}_1)r_1^2 \dot{\theta}_1 \\
-		&-\left(b_{\mathrm{bob}, 2}+c_{\mathrm{bob}, 2}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1 r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right)(r_1^2 \dot{\theta}_1 + r_1r_2 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}) -\left(b_{\mathrm{rod}, 1} + \dfrac{c_{\mathrm{rod}, 1}r_1 \dot{\theta}_1}{2}\right) \dfrac{r_1^2 \dot{\theta}_1}{4} \\
-		& -\left(b_{\mathrm{rod}, 2} + c_{\mathrm{rod}, 2}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right)\left(r_1^2 \dot{\theta}_1^2 + \dfrac{r_1 r_2\dot{\theta}_2 \cos{\left(\theta_1 - \theta_2\right)}}{2}\right)
+		&\dfrac{m_{1r} r_1^2 \ddot{\theta}_1}{12} + (m_{1b}+m_{2b})r_1^2 \ddot{\theta}_1 + m_{2b}r_1 r_2 \ddot{\theta}_2\cos{(\theta_1-\theta_2)} - m_{2b}r_1 r_2 \dot{\theta}_2\left(\dot{\theta}_1 - \dot{\theta}_2\right)\sin{(\theta_1-\theta_2)} - (-m_{2b}r_1r_2\dot{\theta}_1\dot{\theta}_2 \sin{(\theta_1-\theta_2)} - \dfrac{m_{1r}gr_1 \cos{\theta_1}}{2} -m_{2r}gr_1 \cos{\theta_1} -m_{1b}gr_1 \cos{\theta_1} \\
+		&-m_{2b}gr_1 \cos{\theta_1}) = -(b_{1b} + c_{1b} r_1 \dot{\theta}_1)r_1^2 \dot{\theta}_1 -\left(b_{2b}+c_{2b}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1 r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right)(r_1^2 \dot{\theta}_1 + r_1r_2 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}) -\left(b_{1r} + \dfrac{c_{1r}r_1 \dot{\theta}_1}{2}\right) \dfrac{r_1^2 \dot{\theta}_1}{4} \\
+		& -\left(b_{2r} + c_{2r}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right)\left(r_1^2 \dot{\theta}_1 + \dfrac{r_1 r_2\dot{\theta}_2 \cos{\left(\theta_1 - \theta_2\right)}}{2}\right) \\
+		&\dfrac{m_{1r} r_1^2 \ddot{\theta}_1}{12} + (m_{1b}+m_{2b})r_1^2 \ddot{\theta}_1 + m_{2b}r_1 r_2 \ddot{\theta}_2\cos{(\theta_1-\theta_2)} + m_{2b}r_1 r_2 \dot{\theta}_2^2\sin{(\theta_1-\theta_2)} + \dfrac{m_{1r}gr_1 \cos{\theta_1}}{2} +m_{2r}gr_1 \cos{\theta_1} +m_{1b}gr_1 \cos{\theta_1} +m_{2b}gr_1 \cos{\theta_1} = -(b_{1b} + c_{1b} r_1 \dot{\theta}_1)r_1^2 \dot{\theta}_1 \\
+		&-\left(b_{2b}+c_{2b}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1 r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right)(r_1^2 \dot{\theta}_1 + r_1r_2 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}) -\left(b_{1r} + \dfrac{c_{1r}r_1 \dot{\theta}_1}{2}\right) \dfrac{r_1^2 \dot{\theta}_1}{4} \\
+		&-\left(b_{2r} + c_{2r}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right)\left(r_1^2 \dot{\theta}_1 + \dfrac{r_1 r_2\dot{\theta}_2 \cos{\left(\theta_1 - \theta_2\right)}}{2}\right) \\
+	\end{align*}
+	\begin{align*}
+		& \left(\dfrac{m_{1r}}{12} + (m_{1b}+m_{2b})\right)r_1^2 \ddot{\theta}_1 = - m_{2b}r_1 r_2 ( \ddot{\theta}_2\cos{(\theta_1-\theta_2)} +\dot{\theta}_2^2\sin{(\theta_1-\theta_2)}) - gr_1 \cos{\theta_1}\left(\dfrac{m_{1r}}{2} +m_{2r} +m_{1b} + m_{2b}\right) -(b_{1b} + c_{1b} r_1 \dot{\theta}_1)r_1^2 \dot{\theta}_1 \\
+		&-\left(b_{2b}+c_{2b}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1 r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right)(r_1^2 \dot{\theta}_1 + r_1r_2 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}) -\left(b_{1r} + \dfrac{c_{1r}r_1 \dot{\theta}_1}{2}\right) \dfrac{r_1^2 \dot{\theta}_1}{4} \\
+		& -\left(b_{2r} + c_{2r}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right)\left(r_1^2 \dot{\theta}_1 + \dfrac{r_1 r_2\dot{\theta}_2 \cos{\left(\theta_1 - \theta_2\right)}}{2}\right) \\
+	\end{align*}
+	\begin{align*}
+		\ddot{\theta}_1 = &\dfrac{1}{\left(\dfrac{m_{1r}}{12} + (m_{1b}+m_{2b})\right)r_1} [m_{2b}r_2 ( \ddot{\theta}_2\cos{(\theta_1-\theta_2)} +\dot{\theta}_2^2\sin{(\theta_1-\theta_2)}) 
+		- g \cos{\theta_1}\left(\dfrac{m_{1r}}{2} +m_{2r} +m_{1b} + m_{2b}\right) -(b_{1b} + c_{1b} r_1 \dot{\theta}_1)r_1 \dot{\theta}_1 \\
+		&-\left(b_{2b}+c_{2b}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1 r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right)(r_1 \dot{\theta}_1 + r_2 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}) -\left(b_{1r} + \dfrac{c_{1r}r_1 \dot{\theta}_1}{2}\right) \dfrac{r_1 \dot{\theta}_1}{4} \\
+		&-\left(b_{2r} + c_{2r}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right)\left(r_1 \dot{\theta}_1 + \dfrac{r_2\dot{\theta}_2 \cos{\left(\theta_1 - \theta_2\right)}}{2}\right)]
+	\end{align*}
+	
+	Next, we will derive the equations for $\theta_2$:
+	
+	\begin{align*}
+		p_{\theta_2} &= \dfrac{\partial \mathcal{L}}{\partial \dot{\theta}_2} \\
+		&= \dfrac{m_{2r}r_2^2 \dot{\theta}_2}{12} + m_{2b}r_2 \left(r_2 \dot{\theta}_2 + r_1 \dot{\theta}_1\cos{(\theta_1-\theta_2)}\right)\\
+		\dot{p}_{\theta_2} &= \dfrac{m_{2r}r_2^2 \ddot{\theta}_2}{12} + m_{2b}r_2 \left(r_2 \ddot{\theta}_2 + r_1 \ddot{\theta}_1\cos{(\theta_1-\theta_2)}-r_1\dot{\theta}_1(\dot{\theta}_1-\dot{\theta}_2)\sin{(\theta_1-\theta_2)}\right) \\
+		&= r_2^2 \left(\dfrac{m_{2r}}{12} + m_{2b}\right)\ddot{\theta}_2 + m_{2b}r_1r_2\left(\ddot{\theta}_1\cos{(\theta_1-\theta_2)}-\dot{\theta}_1(\dot{\theta}_1-\dot{\theta}_2)\sin{(\theta_1-\theta_2)}\right)\\
+		F_{\theta_2} &= \dfrac{\partial \mathcal{L}}{\partial \theta_2} \\
+		&= m_{2b} r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \sin{(\theta_1-\theta_2)}-\dfrac{m_{2r}gr_2 \cos{\theta_2}}{2} - m_{2b}gr_2\cos{\theta_2}
+	\end{align*}
+	\begin{align*}
+		Q_{\theta_2} &= \sum_{j} \vec{F}_{D,j} \cdot \dfrac{\partial \vec{r}_j}{\partial \theta_2} \\
+		&= \vec{F}_{D,1r} \cdot \dfrac{\partial \vec{r}_{1r}}{\partial \theta_2} + \vec{F}_{D,1b} \cdot \dfrac{\partial \vec{r}_{1b}}{\partial \theta_2} + \vec{F}_{D,2r} \cdot \dfrac{\partial \vec{r}_{2r}}{\partial \theta_2} + \vec{F}_{D,2b} \cdot \dfrac{\partial \vec{r}_{2b}}{\partial \theta_2} \\
+		\dfrac{\partial \vec{r}_{1r}}{\partial \theta_2} &= \begin{bmatrix}
+			0 \\
+			0
+		\end{bmatrix} \\
+		\dfrac{\partial \vec{r}_{1b}}{\partial \theta_2}&= \begin{bmatrix}
+			0 \\
+			0
+		\end{bmatrix} \\
+		\dfrac{\partial \vec{r}_{2r}}{\partial \theta_2} &= \dfrac{r_2}{2}\begin{bmatrix}
+			-\sin{\theta_2} \\
+			\cos{\theta_2}
+		\end{bmatrix} \\
+		\dfrac{\partial \vec{r}_{2b}}{\partial \theta_2}&= r_2\begin{bmatrix}
+			-\sin{\theta_2} \\
+			\cos{\theta_2}
+		\end{bmatrix} \\
+		\vec{F}_{D,2r} &= -\left(b_{2r} + c_{2r}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right)\begin{bmatrix}
+			-r_1 \dot{\theta}_1\sin{\theta_1} - \dfrac{r_2\dot{\theta}_2\sin{\theta_2}}{2}\\
+			r_1 \dot{\theta}_1 \cos{\theta_1} + \dfrac{r_2\dot{\theta}_2\cos{\theta_2}}{2}
+		\end{bmatrix} \\
+		\vec{F}_{D,2b} &= -\left(b_{2b}+c_{2b}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1 r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right) \begin{bmatrix}
+			-r_1\dot{\theta}_1 \sin{\theta_1}-r_2\dot{\theta}_2 \sin{\theta_2} \\
+			r_1\dot{\theta}_1 \cos{\theta_1}+r_2\dot{\theta}_2 \cos{\theta_2}
+		\end{bmatrix} \\
+		\vec{F}_{D,2r} \cdot \dfrac{\partial \vec{r}_{2r}}{\partial \theta_2} &= -\left(b_{2r} + c_{2r}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right)(\dfrac{r_1r_2 \dot{\theta}_1 \sin{\theta_1}\sin{\theta_2}}{2} + \dfrac{r_2^2 \dot{\theta}_2\sin^2{\theta_2}}{4}\\&+\dfrac{r_1r_2\dot{\theta}_1\cos{\theta_1}\cos{\theta_2}}{2}+\dfrac{r_2^2\dot{\theta}_2\cos^2{\theta_2}}{4}) \\
+		&= -\dfrac{1}{4}\left(b_{2r} + c_{2r}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right)(2r_1r_2 \dot{\theta}_1 \cos{(\theta_1-\theta_2)} + r_2^2 \dot{\theta}_2) \\
+		\vec{F}_{D,2b} \cdot \dfrac{\partial \vec{r}_{2b}}{\partial \theta_2} &= -\left(b_{2b}+c_{2b}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1 r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right) \begin{bmatrix}
+			-r_1\dot{\theta}_1 \sin{\theta_1}-r_2\dot{\theta}_2 \sin{\theta_2} \\
+			r_1\dot{\theta}_1 \cos{\theta_1}+r_2\dot{\theta}_2 \cos{\theta_2}
+		\end{bmatrix} \cdot r_2\begin{bmatrix}
+		-\sin{\theta_2} \\
+		\cos{\theta_2}
+		\end{bmatrix} \\
+		&= -\left(b_{2b}+c_{2b}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1 r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right) (r_1 r_2 \dot{\theta}_1 \sin{\theta_1}\sin{\theta_2} + r_2^2 \dot{\theta}_2 \sin^2{\theta_2} \\
+		&+ r_1r_2 \dot{\theta}_1 \cos{\theta_1}\cos{\theta_2} + r_2^2\dot{\theta}_2 \cos^2{\theta_2}) \\
+		&= -\left(b_{2b}+c_{2b}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1 r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right)(r_1r_2 \dot{\theta}_1 \cos{(\theta_1-\theta_2)} + r_2^2 \dot{\theta}_2)
+	\end{align*}
+	\begin{align*}
+		Q_{\theta_2} &= -\dfrac{1}{4}\left(b_{2r} + c_{2r}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right)(2r_1r_2 \dot{\theta}_1 \cos{(\theta_1-\theta_2)} + r_2^2 \dot{\theta}_2)\\
+		& -\left(b_{2b}+c_{2b}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1 r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right)(r_1r_2 \dot{\theta}_1 \cos{(\theta_1-\theta_2)} + r_2^2 \dot{\theta}_2).
+	\end{align*}
+	
+	\begin{align*}
+		&r_2^2 \left(\dfrac{m_{2r}}{12} + m_{2b}\right)\ddot{\theta}_2 + m_{2b}r_1r_2\left(\ddot{\theta}_1\cos{(\theta_1-\theta_2)}-\dot{\theta}_1(\dot{\theta}_1-\dot{\theta}_2)\sin{(\theta_1-\theta_2)}\right) - m_{2b} r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \sin{(\theta_1-\theta_2)} +\dfrac{m_{2r}gr_2 \cos{\theta_2}}{2}+ m_{2b}gr_2\cos{\theta_2}\\
+		&= -\dfrac{1}{4}\left(b_{2r} + c_{2r}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right)(2r_1r_2 \dot{\theta}_1 \cos{(\theta_1-\theta_2)} + r_2^2 \dot{\theta}_2) -\left(b_{2b}+c_{2b}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1 r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right)(r_1r_2 \dot{\theta}_1 \cos{(\theta_1-\theta_2)} \\
+		&+ r_2^2 \dot{\theta}_2)
+	\end{align*}
+	
+	\begin{align*}
+		&m_{2b}r_1r_2\cos{(\theta_1-\theta_2)}\ddot{\theta}_1 = -r_2^2 \left(\dfrac{m_{2r}}{12} + m_{2b}\right)\ddot{\theta}_2 + m_{2b}r_2(r_1\dot{\theta}_1^2\sin{(\theta_1-\theta_2)}-g\cos{\theta_2})
+		-\dfrac{1}{4}\left(b_{2r} + c_{2r}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right)(2r_1r_2 \dot{\theta}_1 \cos{(\theta_1-\theta_2)} \\
+		&+ r_2^2 \dot{\theta}_2) -\left(b_{2b}+c_{2b}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1 r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right)(r_1r_2 \dot{\theta}_1 \cos{(\theta_1-\theta_2)} + r_2^2 \dot{\theta}_2) \\
+		&\ddot{\theta}_1 = \dfrac{\sec{(\theta_1-\theta_2)}}{m_{2b}r_1} [-r_2 \left(\dfrac{m_{2r}}{12} + m_{2b}\right)\ddot{\theta}_2 + m_{2b}(r_1\dot{\theta}_1^2\sin{(\theta_1-\theta_2)}-g\cos{\theta_2})-\dfrac{1}{4}\left(b_{2r} + c_{2r}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right)(2r_1 \dot{\theta}_1 \cos{(\theta_1-\theta_2)} + r_2 \dot{\theta}_2)\\ &-\left(b_{2b}+c_{2b}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right)(r_1 \dot{\theta}_1 \cos{(\theta_1-\theta_2)} + r_2 \dot{\theta}_2)]\\\\\\
+		&\dfrac{1}{\left(\dfrac{m_{1r}}{12} + (m_{1b}+m_{2b})\right)r_1} [m_{2b}r_2 ( \ddot{\theta}_2\cos{(\theta_1-\theta_2)} +\dot{\theta}_2^2\sin{(\theta_1-\theta_2)}) 
+		- g \cos{\theta_1}\left(\dfrac{m_{1r}}{2} +m_{2r} +m_{1b} + m_{2b}\right) -(b_{1b} + c_{1b} r_1 \dot{\theta}_1)r_1 \dot{\theta}_1 \\
+		&-\left(b_{2b}+c_{2b}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1 r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right)(r_1 \dot{\theta}_1 + r_2 \dot{\theta}_2 \cos{(\theta_1-\theta_2)})-\left(b_{1r} + \dfrac{c_{1r}r_1 \dot{\theta}_1}{2}\right) \dfrac{r_1 \dot{\theta}_1}{4} -\left(b_{2r} + c_{2r}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right)(r_1 \dot{\theta}_1 \\
+		&+ \dfrac{r_2\dot{\theta}_2 \cos{\left(\theta_1 - \theta_2\right)}}{2})] =\dfrac{\sec{(\theta_1-\theta_2)}}{m_{2b}r_1} [-r_2 \left(\dfrac{m_{2r}}{12} + m_{2b}\right)\ddot{\theta}_2 + m_{2b}(r_1\dot{\theta}_1^2\sin{(\theta_1-\theta_2)}-g\cos{\theta_2}) -\dfrac{1}{4}\left(b_{2r} + c_{2r}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right)\\
+		&(2r_1 \dot{\theta}_1 \cos{(\theta_1-\theta_2)}+ r_2 \dot{\theta}_2) -\left(b_{2b}+c_{2b}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right)(r_1 \dot{\theta}_1 \cos{(\theta_1-\theta_2)} + r_2 \dot{\theta}_2)]\\
+	\end{align*}
+	
+	Multiply both sides by $r_1m_{2b}\cos{(\theta_1-\theta_2)}$:
+	
+	\begin{align*}
+		&\dfrac{m_{2b}\cos{(\theta_1-\theta_2)}}{\left(\dfrac{m_{1r}}{12} + (m_{1b}+m_{2b})\right)} [m_{2b}r_2 ( \ddot{\theta}_2\cos{(\theta_1-\theta_2)} +\dot{\theta}_2^2\sin{(\theta_1-\theta_2)}) 
+		- g \cos{\theta_1}\left(\dfrac{m_{1r}}{2} +m_{2r} +m_{1b} + m_{2b}\right) -(b_{1b} + c_{1b} r_1 \dot{\theta}_1)r_1 \dot{\theta}_1 \\
+		&-\left(b_{2b}+c_{2b}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1 r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right)(r_1 \dot{\theta}_1 + r_2 \dot{\theta}_2 \cos{(\theta_1-\theta_2)})-\left(b_{1r} + \dfrac{c_{1r}r_1 \dot{\theta}_1}{2}\right) \dfrac{r_1 \dot{\theta}_1}{4} -\left(b_{2r} + c_{2r}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right)(r_1 \dot{\theta}_1 \\
+		&+ \dfrac{r_2\dot{\theta}_2 \cos{\left(\theta_1 - \theta_2\right)}}{2})] =-r_2 \left(\dfrac{m_{2r}}{12} + m_{2b}\right)\ddot{\theta}_2 + m_{2b}(r_1\dot{\theta}_1^2\sin{(\theta_1-\theta_2)}-g\cos{\theta_2}) -\dfrac{1}{4}\left(b_{2r} + c_{2r}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right)\\
+		&(2r_1 \dot{\theta}_1 \cos{(\theta_1-\theta_2)}+ r_2 \dot{\theta}_2) -\left(b_{2b}+c_{2b}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right)(r_1 \dot{\theta}_1 \cos{(\theta_1-\theta_2)} + r_2 \dot{\theta}_2)\\
+	\end{align*}
+	
+	Adding $r_2 \left(\dfrac{m_{2r}}{12} + m_{2b}\right)\ddot{\theta}_2$ to both sides:
+	
+	\begin{align*}
+		&\ddot{\theta_2}\left(\left(\dfrac{m_{2r}}{12} + m_{2b}\right)r_2 + \dfrac{m_{2b}^2r_2\cos^2{(\theta_1-\theta_2)}}{\left(\dfrac{m_{1r}}{12} + (m_{1b}+m_{2b})\right)}\right) + \dfrac{m_{2b}\cos{(\theta_1-\theta_2)}}{\left(\dfrac{m_{1r}}{12} + (m_{1b}+m_{2b})\right)}[m_{2b}r_2\dot{\theta}_2^2\sin{(\theta_1-\theta_2)} - g \cos{\theta_1}\left(\dfrac{m_{1r}}{2} +m_{2r} +m_{1b} + m_{2b}\right) -(b_{1b} + c_{1b} r_1 \dot{\theta}_1)r_1 \dot{\theta}_1 \\
+		&-\left(b_{2b}+c_{2b}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1 r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right)(r_1 \dot{\theta}_1 + r_2 \dot{\theta}_2 \cos{(\theta_1-\theta_2)})-\left(b_{1r} + \dfrac{c_{1r}r_1 \dot{\theta}_1}{2}\right) \dfrac{r_1 \dot{\theta}_1}{4} -\left(b_{2r} + c_{2r}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right)(r_1 \dot{\theta}_1 \\
+		&+ \dfrac{r_2\dot{\theta}_2 \cos{\left(\theta_1 - \theta_2\right)}}{2})] =   m_{2b}(r_1\dot{\theta}_1^2\sin{(\theta_1-\theta_2)}-g\cos{\theta_2}) -\dfrac{1}{4}\left(b_{2r} + c_{2r}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right)(2r_1 \dot{\theta}_1 \cos{(\theta_1-\theta_2)}+ r_2 \dot{\theta}_2)\\
+		&-\left(b_{2b}+c_{2b}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right)(r_1 \dot{\theta}_1 \cos{(\theta_1-\theta_2)} + r_2 \dot{\theta}_2)\\\\\\
+		&\ddot{\theta_2}\left(\left(\dfrac{m_{2r}}{12} + m_{2b}\right)r_2 + \dfrac{m_{2b}^2r_2\cos^2{(\theta_1-\theta_2)}}{\left(\dfrac{m_{1r}}{12} + (m_{1b}+m_{2b})\right)}\right) = -\dfrac{m_{2b}\cos{(\theta_1-\theta_2)}}{\left(\dfrac{m_{1r}}{12} + (m_{1b}+m_{2b})\right)}[m_{2b}r_2\dot{\theta}_2^2\sin{(\theta_1-\theta_2)} - g \cos{\theta_1}\left(\dfrac{m_{1r}}{2} +m_{2r} +m_{1b} + m_{2b}\right) -(b_{1b} + c_{1b} r_1 \dot{\theta}_1)r_1 \dot{\theta}_1 \\
+		&-\left(b_{2b}+c_{2b}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1 r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right)(r_1 \dot{\theta}_1 + r_2 \dot{\theta}_2 \cos{(\theta_1-\theta_2)})-\left(b_{1r} + \dfrac{c_{1r}r_1 \dot{\theta}_1}{2}\right) \dfrac{r_1 \dot{\theta}_1}{4} -\left(b_{2r} + c_{2r}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right)(r_1 \dot{\theta}_1 \\
+		&+ \dfrac{r_2\dot{\theta}_2 \cos{\left(\theta_1 - \theta_2\right)}}{2})] + m_{2b}(r_1\dot{\theta}_1^2\sin{(\theta_1-\theta_2)}-g\cos{\theta_2}) -\dfrac{1}{4}\left(b_{2r} + c_{2r}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right)(2r_1 \dot{\theta}_1 \cos{(\theta_1-\theta_2)}+ r_2 \dot{\theta}_2)\\
+		&-\left(b_{2b}+c_{2b}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right)(r_1 \dot{\theta}_1 \cos{(\theta_1-\theta_2)} + r_2 \dot{\theta}_2)\\\\\\
+	\end{align*}
+	\begin{align*}
+		&\ddot{\theta_2} = \dfrac{1}{\left(\dfrac{m_{2r}}{12} + m_{2b}\right)r_2 + \dfrac{m_{2b}^2r_2\cos^2{(\theta_1-\theta_2)}}{\left(\dfrac{m_{1r}}{12} + (m_{1b}+m_{2b})\right)}}[-\dfrac{m_{2b}\cos{(\theta_1-\theta_2)}}{\left(\dfrac{m_{1r}}{12} + (m_{1b}+m_{2b})\right)}[m_{2b}r_2\dot{\theta}_2^2\sin{(\theta_1-\theta_2)} - g \cos{\theta_1}\left(\dfrac{m_{1r}}{2} +m_{2r} +m_{1b} + m_{2b}\right) -(b_{1b} + c_{1b} r_1 \dot{\theta}_1)r_1 \dot{\theta}_1 \\
+		&-\left(b_{2b}+c_{2b}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1 r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right)(r_1 \dot{\theta}_1 + r_2 \dot{\theta}_2 \cos{(\theta_1-\theta_2)})-\left(b_{1r} + \dfrac{c_{1r}r_1 \dot{\theta}_1}{2}\right) \dfrac{r_1 \dot{\theta}_1}{4} -\left(b_{2r} + c_{2r}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right)(r_1 \dot{\theta}_1 \\
+		&+ \dfrac{r_2\dot{\theta}_2 \cos{\left(\theta_1 - \theta_2\right)}}{2})] + m_{2b}(r_1\dot{\theta}_1^2\sin{(\theta_1-\theta_2)}-g\cos{\theta_2}) -\dfrac{1}{4}\left(b_{2r} + c_{2r}\sqrt{r_1^2 \dot{\theta}_1^2 + \dfrac{r_2^2 \dot{\theta}_2^2}{4} + r_1 r_2 \dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1 -\theta_2)}}\right)(2r_1 \dot{\theta}_1 \cos{(\theta_1-\theta_2)}+ r_2 \dot{\theta}_2)\\
+		&-\left(b_{2b}+c_{2b}\sqrt{r_1^2 \dot{\theta}_1^2 + r_2^2 \dot{\theta}_2^2 +2r_1r_2\dot{\theta}_1 \dot{\theta}_2 \cos{(\theta_1-\theta_2)}}\right)(r_1 \dot{\theta}_1 \cos{(\theta_1-\theta_2)} + r_2 \dot{\theta}_2)]
 	\end{align*}
 \end{document}

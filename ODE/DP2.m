@@ -1,59 +1,45 @@
-% Based on ChatGPT code
-function dth = DP2(params, TH, t)
-    g = params(1);
-    r1 = params(2);
-    r2 = params(3);
-    mr1 = params(4);
-    mr2 = params(5);
-    mb1 = params(6);
-    mb2 = params(7);
-    gamma1 = params(8);
-    gamma2 = params(9);
-    c1 = params(10);
-    c2 = params(11);
-    m = m1 + m2;
-    M = m1 + m2;
-    dth = zeros(4,1);
-    theta1 = TH(1);
-    theta2 = TH(2);
-    dtheta1 = TH(3);
-    dtheta2 = TH(4); 
-    dth(1) = dtheta1;
-    dth(2) = dtheta2; % Moments of inertia
-  % Total masses at each joint
-  m1 = mb1 + mr1/2;    % mass at first hinge (bob + 1/2 rod mass)
-  m2 = mb2 + mr2/2;    % mass at second hinge (bob + 1/2 rod mass)
-
-  % Moment of inertia for uniform rods: (1/3)*m*L^2 if pivoted at one end
-  I1 = (1/3)*mr1*r1^2;
-  I2 = (1/3)*mr2*r2^2;
-
-  % Distance from pivot to center of mass
-  l1 = (mb1*r1 + (mr1/2)*(r1/2)) / (mb1 + mr1);  % composite CoM of first segment
-  l2 = (mb2*r2 + (mr2/2)*(r2/2)) / (mb2 + mr2);  % composite CoM of second segment
-
-  delta = theta2 - theta1;
-  sin_delta = sin(delta);
-  cos_delta = cos(delta);
-
-  % Effective masses for equations of motion
-  M11 = m1*r1^2 + m2*(r1^2 + r2^2 + 2*r1*r2*cos_delta) + I1 + I2;
-  M12 = m2*(r2^2 + r1*r2*cos_delta) + I2;
-  M21 = M12;
-  M22 = m2*r2^2 + I2;
-
-  % Right-hand side terms (including gravity and damping)
-  RHS1 = -m2*r1*r2*sin_delta*dtheta2^2 - ...
-         (m1*l1 + m2*r1)*g*cos(theta1) - m2*r2*g*cos(theta2) - ...
-         gamma1*dtheta1 - c1*abs(dtheta1)*dtheta1;
-
-  RHS2 = m2*r1*r2*sin_delta*dtheta1^2 - ...
-         m2*r2*g*cos(theta2) - ...
-         gamma2*dtheta2 - c2*abs(dtheta2)*dtheta2;
-
-  % Solve linear system M * ddtheta = RHS
-  M = [M11, M12; M21, M22];
-  RHS = [RHS1; RHS2];
-
-  dth(3:4) = M \ RHS;
+% Based on my own work
+function dth = DP2(params, th, t)
+    g = params.g;
+    r1 = params.r1;
+    r2 = params.r2;
+    m1r = params.m1r;
+    m2r = params.m2r;
+    m1b = params.m1b;
+    m2b = params.m2b;
+    b1b = params.b1b;
+    b1r = params.b1r;
+    c1b = params.c1b;
+    c1r = params.c1r;
+    b2b = params.b2b;
+    b2r = params.b2r;
+    c2b = params.c2b;
+    c2r = params.c2r;
+    dth = zeros(4, 1);
+    theta1 = th(1);
+    dtheta1 = th(2);
+    theta2 = th(3); 
+    dtheta2 = th(4);
+    dth(1) = th(2);
+    dth(3) = th(4);
+    outercoef = 1/((m2r/12+m2b)*r2 + (m2b^2*r2*cos(theta1-theta2)^2)/(m1r/12 + m1b+m2b));
+    mass = m1r/2 + m2r + m1b + m2b; 
+    v1b = r1*dtheta1;
+    v1r = v1b/2;
+    v2b = sqrt(r1^2*dtheta1^2+r2^2*dtheta2^2+2*r1*r2*dtheta1*dtheta2*cos(theta1-theta2));
+    v2r = sqrt(r1^2*dtheta1^2+(r2^2*dtheta2^2)/4 + r2*dtheta1*dtheta2*cos(theta1-theta2));
+    drag1b = (b1b + c1b*v1b)*v1b;
+    drag1r = (b1r + c1r*v1r)*v1r/2;
+    drag2b = (b2b + c2b*v2b)*(r1*dtheta1 + r2*dtheta2*cos(theta1-theta2));
+    drag2b2 = (b2b + c2b*v2b)*(r1*dtheta1*cos(theta1-theta2) + r2*dtheta2);
+    drag2r = (b2r + c2r*v2r)*(r1*dtheta1 + r2*dtheta2*cos(theta1-theta2)/2);
+    drag2r2 = 1/4*(b2r + c2r*v2r)*(2*r1*dtheta1*cos(theta1-theta2) + r2*dtheta2);
+    innercoef = -m2b*cos(theta1-theta2)/(m1r/12+m1b+m2b);
+    inner = innercoef*(m2b*r2*dtheta2^2*sin(theta1-theta2) - g*cos(theta1)*(m1r/2+m2r+m1b+m2b)-drag1b-drag2b-drag1r-drag2r);
+    extra = m2b*(r1*dtheta1^2*sin(theta1-theta2)-g*cos(theta2))-drag2r2-drag2b2;
+    dth(4) = outercoef*(inner+extra);
+    outercoef1 = 1/((m1r/12+m1b+m2b)*r1);
+    inner11 = m2b*r2*(dth(4)*cos(theta1-theta2)+dtheta2^2*sin(theta1-theta2));
+    inner12 = -g*cos(theta1)*mass - drag1b - drag2b - drag1r - drag2r;
+    dth(2) = outercoef1*(inner11 + inner12);
 endfunction

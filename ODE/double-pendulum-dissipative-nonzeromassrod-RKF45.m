@@ -3,44 +3,50 @@ N          = 10000;
 g          = 9.81;
 r1         = 1;
 r2         = 1;
-m1         = 1;
-m2         = 1;
-M1         = 1;
-M2         = 1;
-gamma1     = 1;
-gamma2     = 1;
-c1         = 1;
-c2         = 1;
-params     = [g; r1; r2; m1; m2; M1; M2; gamma1; gamma2; c1; c2];
+m1r        = 1;
+m2r        = 1;
+m1b        = 1;
+m2b        = 1;
+b1r        = 3;
+b1b        = 3;
+b2r        = 3;
+b2b        = 3;
+c1r        = 1;
+c2r        = 1;
+c1b        = 1;
+c2b        = 1;
+params     = struct("g", g, "r1", r1, "r2", r2, "m1r", m1r, "m1b", m1b, ...
+"m2r", m2r, "m2b", m2b, "b1r", b1r, "b1b", b1b, "b2r", b2r, "b2b", b2b, ...
+"c1r", c1r, "c1b", c1b, "c2r", c2r, "c2b", c2b);
 t0         = 0;
-tf         = 10;
+tf         = 100;
 theta10    = 0;
 theta20    = 0;
 dtheta10   = 0;
 dtheta20   = 0;
 dt         = [(tf-t0)/N];
 t          = [t0];
-epsil      = 1e-10;
+epsil      = 1e-7;
 theta1     = [theta10];
 theta2     = [theta20];
 dtheta1    = [dtheta10];
 dtheta2    = [dtheta20];
 i          = 1;
 while t(i)<tf;
-    K1 = dt(i)*DP2(params, [theta1(i); theta2(i); dtheta1(i); dtheta2(i)], t(i));
-    K2 = dt(i)*DP2(params, [theta1(i); theta2(i); dtheta1(i); dtheta2(i)] + 1/4*K1, t(i)+1/4*dt(i));
-    K3 = dt(i)*DP2(params, [theta1(i); theta2(i); dtheta1(i); dtheta2(i)] + 3/32*K1+9/32*K2, t(i)+3/8*dt(i));
-    K4 = dt(i)*DP2(params, [theta1(i); theta2(i); dtheta1(i); dtheta2(i)] + 1932/2197*K1 - 7200/2197*K2 + 7296/2197*K3, t(i) + 12/13*dt(i));
-    K5 = dt(i)*DP2(params, [theta1(i); theta2(i); dtheta1(i); dtheta2(i)] + 439/216*K1 - 8*K2 + 3680/513*K3 - 845/4104*K4, t(i)+dt(i));
-    K6 = dt(i)*DP2(params, [theta1(i); theta2(i); dtheta1(i); dtheta2(i)] - 8/27*K1 + 2*K2 - 3544/2565*K3 + 1859/4104*K4 - 11/40*K5, t(i)+dt(i));
+    K1 = dt(i)*DP2(params, [theta1(i); dtheta1(i); theta2(i); dtheta2(i)], t(i));
+    K2 = dt(i)*DP2(params, [theta1(i); dtheta1(i); theta2(i); dtheta2(i)] + 1/4*K1, t(i)+1/4*dt(i));
+    K3 = dt(i)*DP2(params, [theta1(i); dtheta1(i); theta2(i); dtheta2(i)] + 3/32*K1+9/32*K2, t(i)+3/8*dt(i));
+    K4 = dt(i)*DP2(params, [theta1(i); dtheta1(i); theta2(i); dtheta2(i)] + 1932/2197*K1 - 7200/2197*K2 + 7296/2197*K3, t(i) + 12/13*dt(i));
+    K5 = dt(i)*DP2(params, [theta1(i); dtheta1(i); theta2(i); dtheta2(i)] + 439/216*K1 - 8*K2 + 3680/513*K3 - 845/4104*K4, t(i)+dt(i));
+    K6 = dt(i)*DP2(params, [theta1(i); dtheta1(i); theta2(i); dtheta2(i)] - 8/27*K1 + 2*K2 - 3544/2565*K3 + 1859/4104*K4 - 11/40*K5, t(i)+dt(i));
 
     theta1_X1  = theta1(i) + 25/216 * K1(1) + 1408/2565*K3(1) + 2197/4104*K4(1) - 1/5*K5(1);
-    dtheta1_X1 = dtheta1(i) + 25/216 * K1(3) + 1408/2565*K3(3) + 2197/4104*K4(3) - 1/5*K5(3);
+    dtheta1_X1 = dtheta1(i) + 25/216 * K1(2) + 1408/2565*K3(2) + 2197/4104*K4(2) - 1/5*K5(2);
     theta1_X2  = theta1(i) + 16/135 * K1(1) + 6656/12825*K3(1) + 28561/56430*K4(1) - 9/50 * K5(1) + 2/55 * K6(1);
-    dtheta1_X2 = dtheta1(i) + 16/135 * K1(3) + 6656/12825*K3(3) + 28561/56430*K4(3) - 9/50 * K5(3) + 2/55 * K6(3);
-    theta2_X1  = theta2(i) + 25/216 * K1(2) + 1408/2565*K3(2) + 2197/4104*K4(2) - 1/5*K5(2);
+    dtheta1_X2 = dtheta1(i) + 16/135 * K1(2) + 6656/12825*K3(2) + 28561/56430*K4(2) - 9/50 * K5(2) + 2/55 * K6(2);
+    theta2_X1  = theta2(i) + 25/216 * K1(3) + 1408/2565*K3(3) + 2197/4104*K4(3) - 1/5*K5(3);
     dtheta2_X1 = dtheta2(i) + 25/216 * K1(4) + 1408/2565*K3(4) + 2197/4104*K4(4) - 1/5*K5(4);
-    theta2_X2  = theta2(i) + 16/135 * K1(2) + 6656/12825*K3(2) + 28561/56430*K4(2) - 9/50 * K5(2) + 2/55 * K6(2);
+    theta2_X2  = theta2(i) + 16/135 * K1(3) + 6656/12825*K3(3) + 28561/56430*K4(3) - 9/50 * K5(3) + 2/55 * K6(3);
     dtheta2_X2 = dtheta2(i) + 16/135 * K1(4) + 6656/12825*K3(4) + 28561/56430*K4(4) - 9/50 * K5(4) + 2/55 * K6(4);
     theta1   = [theta1; theta1_X1];
     theta2   = [theta2; theta2_X1];
@@ -125,11 +131,12 @@ axis([-2.2 2.2 -2.2 2.2]);
 hold on;
 
 % Output GIF filename
-gifname = "Figure 5 Double pendulum.gif";
+gifname = "Figure 5 Double pendulum 10 delay 0.01 drag coeffs.gif";
 
+frame(length(1:length(t))) = struct('cdata', [], 'colormap', []);
+k = 1;
 for i = 1:length(t)
-  % Clear and plot
-  cla;
+    cla;
   plot([0 x1(i)], [0 y1(i)], 'b-', 'LineWidth', 2);      % Rod 1
   plot([x1(i) x2(i)], [y1(i) y2(i)], 'r-', 'LineWidth', 2);  % Rod 2
   plot(x1(i), y1(i), 'bo', 'MarkerSize', 8, 'MarkerFaceColor', 'b');
@@ -137,15 +144,20 @@ for i = 1:length(t)
   title(sprintf("t = %.2f s", t(i)));
 
   drawnow;
-  frame = getframe(gcf);
-  img = frame2im(frame);
+  frame(k) = getframe(gcf);
+  k = k+1;
+end
+
+delay = 10;
+for k=1:delay:length(frame)
+  img = frame2im(frame(k));
   [A, map] = rgb2ind(img);
 
-  if i == 1
-    imwrite(A, map, gifname, "gif", "LoopCount", Inf, "DelayTime", dt(i));
+  if k == 1
+    imwrite(A, map, gifname, "gif", "LoopCount", Inf, "DelayTime", dt(k));
   else
-    imwrite(A, map, gifname, "gif", "WriteMode", "append", "DelayTime", dt(i));
+    imwrite(A, map, gifname, "gif", "WriteMode", "append", "DelayTime", dt(k));
   end
 end
 
-disp("GIF saved as 'Figure 5 Double pendulum.gif'");
+disp("GIF saved as 'Figure 5 Double pendulum 10 delay 0.01 drag coeffs.gif'");
