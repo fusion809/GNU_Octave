@@ -37,3 +37,4 @@
 \contentsline {paragraph}{\numberline {7.2.2.2}Bob 2}{13}{paragraph.7.2.2.2}%
 \contentsline {subsubsection}{\numberline {7.2.3}Right-hand side}{13}{subsubsection.7.2.3}%
 \contentsline {subsubsection}{\numberline {7.2.4}Final equation}{14}{subsubsection.7.2.4}%
+\contentsline {subsection}{\numberline {7.3}Rewriting in terms of $\ddot {\theta }_2$}{14}{subsection.7.3}%

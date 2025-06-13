@@ -1,25 +1,23 @@
 % Angle measured relative to negative y-axis based on ChatGPT code. Not sure if the dissipative forces are counted right.
-g          = 9.81;
-r1         = 1;
-r2         = 1;
-m1r        = 1;
-m2r        = 1;
-m1b        = 1;
-m2b        = 1;
-b1r        = 3;
-b1b        = 3;
-b2r        = 3;
-b2b        = 3;
-c1r        = 1;
-c2r        = 1;
-c1b        = 1;
-c2b        = 1;
-params     = struct("g", g, "r1", r1, "r2", r2, "m1r", m1r, "m1b", m1b, ...
-"m2r", m2r, "m2b", m2b, "b1r", b1r, "b1b", b1b, "b2r", b2r, "b2b", b2b, ...
-"c1r", c1r, "c1b", c1b, "c2r", c2r, "c2b", c2b);
+params     = struct();
+params.g   = 9.81;
+params.r1  = 1;
+params.r2  = 1;
+params.m1r = 1;
+params.m2r = 1;
+params.m1b = 1;
+params.m2b = 1;
+params.b1r = 0.10;
+params.b1b = 0.10;
+params.b2r = 0.10;
+params.b2b = 0.10;
+params.c1r = 0.04;
+params.c2r = 0.04;
+params.c1b = 0.04;
+params.c2b = 0.04;
 
 t0 = 0;
-tf = 10;
+tf = 100;
 theta0 = [0; 0; 0; 0];  % initial angles and angular velocities
 t = linspace(t0, tf, 10000);    % time vector
 rhs = @(y, t) DP2(params, y, t);
