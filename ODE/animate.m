@@ -4,14 +4,17 @@ function animate(params, radii, angles, t, dt, figno, delay, descriptor)
         x = zeros(size(angles));
         y = zeros(size(angles));
         nopen = size(radii)(2);
-        for i=1:nopen
-            x(:,i) = radii(i) * cos(angles(:,i));
-            y(:,i) = radii(i) * sin(angles(:,i));
+        x(:,1) = radii(1) * cos(angles(:,1));
+        y(:,1) = radii(1) * sin(angles(:,1));
+        for i=2:nopen
+            x(:,i) = x(:,i-1) + radii(i) * cos(angles(:,i));
+            y(:,i) = y(:,i-1) + radii(i) * sin(angles(:,i));
         end
         % Set up figure
         figure(figno); clf;
         axis equal off;
-        axis([-2.2 2.2 -2.2 2.2]);
+        radiis = sum(radii)/2;
+        axis([-2.2*radiis 2.2*radiis -2.2*radiis 2.2*radiis]);
         hold on;
         % Output GIF filename
         gifname = ["Figure ", num2str(figno), " ", num2str(nopen)];
@@ -20,14 +23,6 @@ function animate(params, radii, angles, t, dt, figno, delay, descriptor)
 
         frame(length(1:length(t))) = struct('cdata', [], 'colormap', []);
         k = 1;
-        title=[num2str(nopen), " coupled pendulum(s), delay=", num2str(delay)];
-        fields = fieldnames(params);
-        for j = 1:numel(fields)
-            fname = fields{j};
-            val_str = num2str(params.(fname));
-            str = [", ", fname, "=", val_str];
-            title = [title, str];
-        end
         for i = 1:length(t)
             cla;
             plot([0 x(i,1)], [0 y(i,1)], 'LineWidth', 2);      % Rod 1
@@ -37,7 +32,7 @@ function animate(params, radii, angles, t, dt, figno, delay, descriptor)
                 plot(x(i,j), y(i,j), 'ro', 'MarkerSize', 8);
             end
             
-            title([title, sprintf("t = %.2f s", t(i))]);
+            title([sprintf("t = %.2f s", t(i))]);
 
             drawnow;
             frame(k) = getframe(gcf);
