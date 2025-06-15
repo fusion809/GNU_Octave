@@ -15,41 +15,16 @@ dtheta20   = 0;
 dt         = [(tf-t0)/N];
 t          = [t0];
 epsil      = 1e-10;
-theta1     = [theta10];
-theta2     = [theta20];
-dtheta1    = [dtheta10];
-dtheta2    = [dtheta20];
 i          = 1;
-while t(i)<tf;
-    K1 = dt(i)*DP(params, [theta1(i); theta2(i); dtheta1(i); dtheta2(i)], t(i));
-    K2 = dt(i)*DP(params, [theta1(i); theta2(i); dtheta1(i); dtheta2(i)] + 1/4*K1, t(i)+1/4*dt(i));
-    K3 = dt(i)*DP(params, [theta1(i); theta2(i); dtheta1(i); dtheta2(i)] + 3/32*K1+9/32*K2, t(i)+3/8*dt(i));
-    K4 = dt(i)*DP(params, [theta1(i); theta2(i); dtheta1(i); dtheta2(i)] + 1932/2197*K1 - 7200/2197*K2 + 7296/2197*K3, t(i) + 12/13*dt(i));
-    K5 = dt(i)*DP(params, [theta1(i); theta2(i); dtheta1(i); dtheta2(i)] + 439/216*K1 - 8*K2 + 3680/513*K3 - 845/4104*K4, t(i)+dt(i));
-    K6 = dt(i)*DP(params, [theta1(i); theta2(i); dtheta1(i); dtheta2(i)] - 8/27*K1 + 2*K2 - 3544/2565*K3 + 1859/4104*K4 - 11/40*K5, t(i)+dt(i));
-
-    theta1_X1  = theta1(i) + 25/216 * K1(1) + 1408/2565*K3(1) + 2197/4104*K4(1) - 1/5*K5(1);
-    dtheta1_X1 = dtheta1(i) + 25/216 * K1(3) + 1408/2565*K3(3) + 2197/4104*K4(3) - 1/5*K5(3);
-    theta1_X2  = theta1(i) + 16/135 * K1(1) + 6656/12825*K3(1) + 28561/56430*K4(1) - 9/50 * K5(1) + 2/55 * K6(1);
-    dtheta1_X2 = dtheta1(i) + 16/135 * K1(3) + 6656/12825*K3(3) + 28561/56430*K4(3) - 9/50 * K5(3) + 2/55 * K6(3);
-    theta2_X1  = theta2(i) + 25/216 * K1(2) + 1408/2565*K3(2) + 2197/4104*K4(2) - 1/5*K5(2);
-    dtheta2_X1 = dtheta2(i) + 25/216 * K1(4) + 1408/2565*K3(4) + 2197/4104*K4(4) - 1/5*K5(4);
-    theta2_X2  = theta2(i) + 16/135 * K1(2) + 6656/12825*K3(2) + 28561/56430*K4(2) - 9/50 * K5(2) + 2/55 * K6(2);
-    dtheta2_X2 = dtheta2(i) + 16/135 * K1(4) + 6656/12825*K3(4) + 28561/56430*K4(4) - 9/50 * K5(4) + 2/55 * K6(4);
-    theta1   = [theta1; theta1_X1];
-    theta2   = [theta2; theta2_X1];
-    dtheta1  = [dtheta1; dtheta1_X1];
-    dtheta2  = [dtheta2; dtheta2_X1];
-    TE = max(abs(-1/360 * K1 + 128/4275 * K3 + 2197/75240 * K4 - 1/50 * K5 - 2/55 * K6));
-    s = 0.9*(epsil/TE)^(1/5);
-    if (s*dt(i)+t(i) < tf)
-        dt = [dt; s*dt(i)];
-    else
-        dt = [dt; tf-t(i)];
-    end
-    t = [t; t(i)+dt(i)];
-    i = i + 1;
-end
+rhs        = @(y, t) DP(params, y, t);
+sol        = RKF45(rhs, [t0 tf], [theta10 theta20 dtheta10 dtheta20], (tf-t0)/N, epsil);
+t          = sol(:,1);
+dt         = sol(:,2);
+X          = sol(:,3:end);
+theta1     = X(:,1);
+theta2     = X(:,2);
+dtheta1    = X(:,3);
+dtheta2    = X(:,4);
 printf("Number of t values used in the analysis = %d\n", length(t))
 printf("Minimum theta1 = %d\n", min(theta1))
 printf("Minimum theta2 = %d\n", min(theta2))

@@ -16,12 +16,12 @@ params.c2r = 0.04;
 params.c1b = 0.04;
 params.c2b = 0.04;
 
-t0 = 0;
-tf = 100;
-theta0 = [0; 0; 0; 0];  % initial angles and angular velocities
-t = linspace(t0, tf, 10000);    % time vector
-rhs = @(y, t) DP2(params, y, t);
-sol = lsode(rhs, theta0, t);
+t0         = 0;
+tf         = 100;
+theta0     = [0; 0; 0; 0];  % initial angles and angular velocities
+t          = linspace(t0, tf, 10000);    % time vector
+rhs        = @(y, t) DP2(params, y, t);
+sol        = lsode(rhs, theta0, t);
 figure(1);
 plot(t, sol(:,1));
 title("Double complex pendulum: \\theta_1 vs t", "fontsize", 25);

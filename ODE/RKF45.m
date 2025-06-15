@@ -1,6 +1,8 @@
-function sol = RKF45(func, t0, tf, X0, dtInit, epsil)
+function sol = RKF45(func, tRange, X0, dtInit, epsil)
     X = [X0];
     novars = length(X);
+    t0 = tRange(1);
+    tf = tRange(2);
     t = [t0];
     i = 1;
     dt = [dtInit];
@@ -12,6 +14,8 @@ function sol = RKF45(func, t0, tf, X0, dtInit, epsil)
         K5 = dt(i)*func(X(i,:) + 439/216*K1 - 8*K2 + 3680/513*K3 - 845/4104*K4, t(i)+dt(i));
         K6 = dt(i)*func(X(i,:) - 8/27*K1 + 2*K2 - 3544/2565*K3 + 1859/4104*K4 - 11/40*K5, t(i)+dt(i));
         X_X1  = X(i,:) + 25/216 * K1 + 1408/2565*K3 + 2197/4104*K4 - 1/5*K5;
+        size(X)
+        size(X_X1)
         X = [X; X_X1];
         TE = max(abs(-1/360 * K1 + 128/4275 * K3 + 2197/75240 * K4 - 1/50 * K5 - 2/55 * K6));
         s = 0.9*(epsil/TE)^(1/5);
