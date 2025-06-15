@@ -1,5 +1,5 @@
 function dth = sinpen(params, th, t)
-    dth = zeros(2,1);
+    dth = zeros(1,2);
     g = params(1);
     r = params(2);
     mr = params(3);
