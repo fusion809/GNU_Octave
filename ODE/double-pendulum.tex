@@ -616,4 +616,48 @@
 	
 	At this point, we could rewrite one of our $\ddot{\theta}_1$ equations with $\ddot{\theta}_2$ replaced with the right-hand side of Equation \eqref{d2theta2}. We will not do this as this will add even more potential for errors to creep in, and Equations \eqref{d2theta11} and \eqref{d2theta2} are already suitable for numerical integration. 
 	\end{landscape}
+	
+	\section{Hamiltonian formula of conservative system}
+	\begin{align*}
+		p_{\theta_1} &= \dfrac{\partial \mathcal{L}}{\partial \dot{\theta}_1} \\
+		&= \dfrac{m_{1r}r_1^2 \dot{\theta}_1}{12} + (m_{1b}+m_{2b}) r_1^2 \dot{\theta}_1 + m_{2b}r_1 r_2 \dot{\theta}_2 \cos{\left(\theta_1-\theta_2\right)} \\
+		&= \dfrac{r_1^2 \dot{\theta}_1}{12} \left(m_{1r} + 12m_{1b} + 12m_{2b}\right) + m_{2b}r_1 r_2 \dot{\theta}_2 \cos{\left(\theta_1-\theta_2\right)}\\
+		p_{\theta_2} &= \dfrac{\partial \mathcal{L}}{\partial \dot{\theta}_2} \\
+		&= \dfrac{m_{2r}r_2^2 \dot{\theta}_2}{12} + m_{2b}r_2 \left(r_2 \dot{\theta}_2 + r_1 \dot{\theta}_1\cos{(\theta_1-\theta_2)}\right) \\
+		&= \dfrac{r_2^2 \dot{\theta}_2}{12}\left(m_{2r} + 12m_{2b}\right) + m_{2b}r_1r_2 \dot{\theta}_1\cos{(\theta_2-\theta_1)}.
+	\end{align*}
+	
+	Based on $p_{\theta_1}$:
+	
+	\begin{align}
+		\dot{\theta}_1 &= \dfrac{12}{r_1^2(m_{1r} + 12m_{1b} + 12m_{2b})} \left(p_{\theta_1} - m_{2b}r_1r_2 \dot{\theta}_2\cos{(\theta_2-\theta_1)}\right) \label{dtheta11}
+	\end{align}
+	
+	Based on $p_{\theta_2}$:
+	
+	\begin{align*}
+		\dot{\theta}_1 &= \dfrac{\sec{(\theta_2-\theta_1)}}{m_{2b}r_1r_2} \left(p_{\theta_2} - \dfrac{r_2^2 \dot{\theta}_2}{12}(m_{2r}+12m_{2b})\right)
+	\end{align*}
+	
+	Equation $\dot{\theta}_1$ gives:
+	
+	\begin{align*}
+		\dfrac{12}{r_1^2(m_{1r} + 12m_{1b} + 12m_{2b})} \left(p_{\theta_1} - m_{2b}r_1r_2 \dot{\theta}_2\cos{(\theta_2-\theta_1)}\right)&= \dfrac{\sec{(\theta_2-\theta_1)}}{m_{2b}r_1r_2} \left(p_{\theta_2} - \dfrac{r_2^2 \dot{\theta}_2}{12}(m_{2r}+12m_{2b})\right) \\
+		\dfrac{144\cos{(\theta_2-\theta_1)}m_{2b}}{r_1r_2(m_{1r} + 12m_{1b} + 12m_{2b})}\left(p_{\theta_1} - m_{2b}r_1r_2 \dot{\theta}_2\cos{(\theta_2-\theta_1)}\right) &= \dfrac{12p_{\theta_2}}{r_2^2} - \dot{\theta}_2(m_{2r}+12m_{2b}) \\
+		\dfrac{144\cos{(\theta_2-\theta_1)}m_{2b}}{r_1r_2(m_{1r} + 12m_{1b} + 12m_{2b})(m_{2r}+12m_{2b})}\left(p_{\theta_1} - m_{2b}r_1r_2 \dot{\theta}_2\cos{(\theta_2-\theta_1)}\right) &= \dfrac{12p_{\theta_2}}{r_2^2(m_{2r}+12m_{2b})} - \dot{\theta}_2.
+	\end{align*}
+	
+	\begin{align*}
+		\dot{\theta}_2\left(1 - \dfrac{144\cos^2{(\theta_2-\theta_1)}m_{2b}^2}{(m_{1r} + 12m_{1b} + 12m_{2b})(m_{2r}+12m_{2b})}\right) &= -\dfrac{144p_{\theta_1}\cos{(\theta_2-\theta_1)}m_{2b}}{r_1r_2(m_{1r} + 12m_{1b} + 12m_{2b})(m_{2r}+12m_{2b})} + \dfrac{12p_{\theta_2}}{r_2^2(m_{2r}+12m_{2b})} \\
+		\dot{\theta}_2 &= \dfrac{-\dfrac{144p_{\theta_1}\cos{(\theta_2-\theta_1)}m_{2b}}{r_1r_2(m_{1r} + 12m_{1b} + 12m_{2b})(m_{2r}+12m_{2b})} + \dfrac{12p_{\theta_2}}{r_2^2(m_{2r}+12m_{2b})}}{1 - \dfrac{144\cos^2{(\theta_2-\theta_1)}m_{2b}^2}{(m_{1r} + 12m_{1b} + 12m_{2b})(m_{2r}+12m_{2b})}}.
+	\end{align*}
+	
+	\begin{align*}
+		\dot{\theta}_2 &= \dfrac{-144p_{\theta_1}\cos{(\theta_2-\theta_1)}m_{2b}r_2 + 12p_{\theta_2}(m_{1r} + 12m_{1b} + 12m_{2b})r_1}{r_1r_2^2\left[(m_{1r} + 12m_{1b} + 12m_{2b})(m_{2r}+12m_{2b}) - 144\cos^2{(\theta_2-\theta_1)}m_{2b}^2\right]}
+	\end{align*}
+	Substituting into Equation \eqref{dtheta11}:
+	
+	\begin{align*}
+		\dot{\theta}_1 &= \dfrac{12}{r_1^2(m_{1r} + 12m_{1b} + 12m_{2b})} \left(p_{\theta_1} + \dfrac{144p_{\theta_1}\cos{(\theta_2-\theta_1)}m_{2b}^2r_2 - 12m_{2b}p_{\theta_2}(m_{1r} + 12m_{1b} + 12m_{2b})r_1}{r_2\left[(m_{1r} + 12m_{1b} + 12m_{2b})(m_{2r}+12m_{2b}) - 144\cos^2{(\theta_2-\theta_1)}m_{2b}^2\right]}\cos{(\theta_2-\theta_1)}\right)
+	\end{align*}
 \end{document}

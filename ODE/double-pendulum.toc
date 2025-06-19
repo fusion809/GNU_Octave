@@ -38,3 +38,4 @@
 \contentsline {subsubsection}{\numberline {7.2.3}Right-hand side}{14}{subsubsection.7.2.3}%
 \contentsline {subsubsection}{\numberline {7.2.4}Final equation}{14}{subsubsection.7.2.4}%
 \contentsline {subsection}{\numberline {7.3}Rewriting in terms of $\ddot {\theta }_2$}{15}{subsection.7.3}%
+\contentsline {section}{\numberline {8}Hamiltonian formula of conservative system}{19}{section.8}%
